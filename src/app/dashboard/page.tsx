@@ -1,0 +1,78 @@
+
+export default function Dashboard() {
+  const userStats = {
+    articlesRead: 12,
+    coursesCompleted: 3,
+    scholarshipsApplied: 5,
+    savedItems: 8
+  };
+
+  const recentActivity = [
+    { action: "Read article", item: "Study Tips for Academic Success", date: "2 hours ago" },
+    { action: "Bookmarked", item: "Merit-Based Scholarship", date: "1 day ago" },
+    { action: "Completed", item: "Resume Building Course", date: "3 days ago" }
+  ];
+
+  return (
+    <div className="container mx-auto px-6 py-12">
+      <div className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-800 mb-2">Dashboard</h1>
+        <p className="text-gray-600">Welcome back! Here's your learning progress.</p>
+      </div>
+
+      {/* Stats Grid */}
+      <div className="grid md:grid-cols-4 gap-6 mb-12">
+        <div className="bg-blue-50 rounded-lg p-6 text-center">
+          <div className="text-3xl font-bold text-blue-600 mb-2">{userStats.articlesRead}</div>
+          <div className="text-gray-600">Articles Read</div>
+        </div>
+        <div className="bg-green-50 rounded-lg p-6 text-center">
+          <div className="text-3xl font-bold text-green-600 mb-2">{userStats.coursesCompleted}</div>
+          <div className="text-gray-600">Courses Completed</div>
+        </div>
+        <div className="bg-yellow-50 rounded-lg p-6 text-center">
+          <div className="text-3xl font-bold text-yellow-600 mb-2">{userStats.scholarshipsApplied}</div>
+          <div className="text-gray-600">Scholarships Applied</div>
+        </div>
+        <div className="bg-purple-50 rounded-lg p-6 text-center">
+          <div className="text-3xl font-bold text-purple-600 mb-2">{userStats.savedItems}</div>
+          <div className="text-gray-600">Saved Items</div>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-8">
+        {/* Recent Activity */}
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">Recent Activity</h2>
+          <div className="space-y-4">
+            {recentActivity.map((activity, index) => (
+              <div key={index} className="flex items-center justify-between py-2 border-b border-gray-100">
+                <div>
+                  <div className="font-medium text-gray-800">{activity.action}</div>
+                  <div className="text-sm text-gray-600">{activity.item}</div>
+                </div>
+                <div className="text-sm text-gray-500">{activity.date}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Quick Actions */}
+        <div className="bg-white rounded-lg shadow-lg p-6">
+          <h2 className="text-xl font-bold text-gray-800 mb-4">Quick Actions</h2>
+          <div className="space-y-3">
+            <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
+              Find New Scholarships
+            </button>
+            <button className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors">
+              Browse Job Opportunities
+            </button>
+            <button className="w-full bg-yellow-600 text-white py-3 rounded-lg hover:bg-yellow-700 transition-colors">
+              Continue Learning
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
