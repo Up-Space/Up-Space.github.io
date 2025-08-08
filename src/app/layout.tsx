@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "../../components/Header";
-import Footer from "../../components/Footer";
-import LiveChat from "../../components/LiveChat";
+import Header from "../components/Header.js";
+import Footer from "../components/Footer.js";
+import LiveChat from "../components/LiveChat.js";
 
 const inter = Inter({
   subsets: ["latin"],
