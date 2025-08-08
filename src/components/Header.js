@@ -35,7 +35,7 @@ export default function Header() {
           {/* Logo and Brand */}
           <Link href="/" className="flex flex-col items-center group">
             <Image
-              src="/logo.svg" 
+              src="/logo.png" 
               alt="Scholars Scribe Logo"
               width={200} 
               height={50} 
