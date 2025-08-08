@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image'; // Import the Image component
+import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,20 +33,15 @@ export default function Header() {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo and Brand */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex flex-col items-center group">
             <Image
-              src="/logo.svg" // Use the path to your image in the public folder
+              src="/logo.svg" 
               alt="Scholars Scribe Logo"
-              width={40} 
-              height={40} 
-              className="w-10 h-10 group-hover:scale-105 transition-transform"
+              width={200} 
+              height={50} 
+              className="group-hover:scale-105 transition-transform"
             />
-            <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Scholars Scribe
-              </h1>
-              <p className="text-xs text-gray-500 -mt-1">Academic Excellence Hub</p>
-            </div>
+            <p className="text-xs text-gray-500">Academic Excellence Hub</p>
           </Link>
 
           {/* Desktop Navigation */}
