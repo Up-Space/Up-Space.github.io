@@ -31,14 +31,14 @@ export default function Header() {
   return (
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between py-4">
+        <div className="flex items-center justify-between h-20">
           {/* Logo and Brand */}
-          <Link href="/" className="flex flex-col items-center group space-y-0.5">
+          <Link href="/" className="flex flex-col items-center group">
             <Image
               src="/logo.svg" 
               alt="Scholars Scribe Logo"
-              width={180}
-              height={40}
+              width={200} 
+              height={50} 
               className="group-hover:scale-105 transition-transform"
             />
             <p className="text-xs text-gray-500">Academic Excellence Hub</p>
