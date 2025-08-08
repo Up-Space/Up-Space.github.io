@@ -31,7 +31,7 @@ export default function Header() {
   return (
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-20">
+        <div className="flex items-center justify-between py-4">
           {/* Logo and Brand */}
           <Link href="/" className="flex flex-col items-center group space-y-0.5">
             <Image
