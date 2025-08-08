@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
+import Image from 'next/image'; // Import the Image component
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,15 +33,15 @@ export default function Header() {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo and Brand */}
-          <Link href="/" className="flex flex-col items-center group space-y-1">
+          <Link href="/" className="flex items-center space-x-3 group">
             <Image
-              src="/logo.svg" 
+              src="/logo.svg" // Use the path to your image in the public folder
               alt="Scholars Scribe Logo"
-              width={150}
-              height={40}
-              className="group-hover:scale-105 transition-transform"
+              width={200} // A larger value to make the logo more visible
+              height={50} // Adjust as needed to maintain aspect ratio
+              className="w-10 h-10 group-hover:scale-105 transition-transform"
             />
-            <p className="text-xs text-gray-500">Academic Excellence Hub</p>
+            {/* The text has been removed */}
           </Link>
 
           {/* Desktop Navigation */}
