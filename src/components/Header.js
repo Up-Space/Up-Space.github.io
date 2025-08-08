@@ -37,11 +37,16 @@ export default function Header() {
             <Image
               src="/logo.svg" // Use the path to your image in the public folder
               alt="Scholars Scribe Logo"
-              width={200} // A larger value to make the logo more visible
-              height={50} // Adjust as needed to maintain aspect ratio
+              width={40} 
+              height={40} 
               className="w-10 h-10 group-hover:scale-105 transition-transform"
             />
-            {/* The text has been removed */}
+            <div>
+              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Scholars Scribe
+              </h1>
+              <p className="text-xs text-gray-500 -mt-1">Academic Excellence Hub</p>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}
