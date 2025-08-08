@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import Image from 'next/image'; // Import the Image component
+import Image from 'next/image';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,14 +37,11 @@ export default function Header() {
             <Image
               src="/logo.svg" // Use the path to your image in the public folder
               alt="Scholars Scribe Logo"
-              width={40} // This is the original size from the code you sent
-              height={40} // This is the original size from the code you sent
-              className="w-10 h-10 group-hover:scale-105 transition-transform"
+              width={150} // Adjust this width to your preferred size
+              height={40} // Adjust this height to your preferred size
+              className="group-hover:scale-105 transition-transform"
             />
             <div>
-              <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                Scholars Scribe
-              </h1>
               <p className="text-xs text-gray-500 -mt-1">Academic Excellence Hub</p>
             </div>
           </Link>
