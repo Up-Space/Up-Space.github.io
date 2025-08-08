@@ -33,12 +33,12 @@ export default function Header() {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo and Brand */}
-          <Link href="/" className="flex flex-col items-center group">
+          <Link href="/" className="flex flex-col items-center group space-y-0.5">
             <Image
               src="/logo.svg" 
               alt="Scholars Scribe Logo"
-              width={200} 
-              height={50} 
+              width={180}
+              height={40}
               className="group-hover:scale-105 transition-transform"
             />
             <p className="text-xs text-gray-500">Academic Excellence Hub</p>
