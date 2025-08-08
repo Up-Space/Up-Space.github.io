@@ -33,17 +33,15 @@ export default function Header() {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo and Brand */}
-          <Link href="/" className="flex items-center space-x-3 group">
+          <Link href="/" className="flex flex-col items-center group">
             <Image
-              src="/logo.svg" // Use the path to your image in the public folder
+              src="/logo.svg" 
               alt="Scholars Scribe Logo"
-              width={150} // Adjust this width to your preferred size
-              height={40} // Adjust this height to your preferred size
-              className="group-hover:scale-105 transition-transform"
+              width={150} // Adjust this width
+              height={40} // Adjust this height
+              className="group-hover:scale-105 transition-transform mb-1"
             />
-            <div>
-              <p className="text-xs text-gray-500 -mt-1">Academic Excellence Hub</p>
-            </div>
+            <p className="text-xs text-gray-500">Academic Excellence Hub</p>
           </Link>
 
           {/* Desktop Navigation */}
