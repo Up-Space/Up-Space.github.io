@@ -7,7 +7,8 @@
     "build": "next build",
     "export": "next build && next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "npx @netlify/next"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -17,7 +18,8 @@
     "react": "19.1.0",
     "react-dom": "19.1.0",
     "remark": "^15.0.1",
-    "remark-html": "^16.0.1"
+    "remark-html": "^16.0.1",
+    "@netlify/next": "^4.0.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

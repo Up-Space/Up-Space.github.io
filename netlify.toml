@@ -1,20 +1,22 @@
-
 [build]
-  publish = ".next"
-  command = "npm run build"
+command = "npm run build"
+publish = "out" # Use 'out' if you're exporting statically; otherwise Netlify handles this
+functions = "netlify/functions" # Where your serverless functions live
 
 [build.environment]
-  NODE_VERSION = "18"
+NODE_VERSION = "18"
+NEXT_PRIVATE_TARGET = "server"
 
 [[redirects]]
-  from = "/admin/*"
-  to = "/admin/index.html"
-  status = 200
+from = "/admin/*"
+to = "/admin/index.html"
+status = 200
 
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+from = "/*"
+to = "/index.html"
+status = 200
+force = true # Optional: forces redirect even if file exists
 
 [template.environment]
-  NEXT_PUBLIC_SITE_URL = "https://your-site-name.netlify.app"
+NEXT_PUBLIC_SITE_URL = "https://your-site-name.netlify.app"

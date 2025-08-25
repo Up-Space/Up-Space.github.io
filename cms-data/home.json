@@ -1,0 +1,38 @@
+{
+  "featuredCategories": [
+    {
+      "title": "Blogs & News",
+      "description": "Latest insights, tips, and news for academic and career success",
+      "slug": "blog-posts",
+      "icon": "📰",
+      "gradient": "from-indigo-500 to-indigo-600"
+    },
+    {
+      "title": "Scholarships",
+      "description": "Discover funding opportunities for your educational journey",
+      "slug": "scholarships",
+      "icon": "🎓",
+      "gradient": "from-emerald-500 to-emerald-600"
+    },
+    {
+      "title": "Job Board",
+      "description": "Find career opportunities and professional advancement",
+      "slug": "job-board",
+      "icon": "💼",
+      "gradient": "from-blue-500 to-blue-600"
+    },
+    {
+      "title": "Education & Coding",
+      "description": "Master programming and technical skills for the digital age",
+      "slug": "coding-courses",
+      "icon": "💻",
+      "gradient": "from-purple-500 to-purple-600"
+    }
+  ],
+  "stats": [
+    { "number": "10K+", "label": "Students Helped" },
+    { "number": "500+", "label": "Articles Published" },
+    { "number": "50+", "label": "Scholarship Opportunities" },
+    { "number": "95%", "label": "Success Rate" }
+  ]
+}
