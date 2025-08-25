@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "../components/Header.js";
-import Footer from "../components/Footer.js";
-import LiveChat from "../components/LiveChat.js";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
+import LiveChat from "../components/LiveChat";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -17,9 +17,10 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Scholars Space - Your Academic Success Hub",
-  description: "Discover career advancement tips, scholarships, coding courses, and more to accelerate your academic and professional journey.",
+  description:
+    "Discover career advancement tips, scholarships, coding courses, and more to accelerate your academic and professional journey.",
   icons: {
-    icon: '/favicon.ico', // Change this line to point to your new favicon file
+    icon: "/favicon.ico", // Change this line to point to your new favicon file
   },
 };
 
@@ -34,13 +35,10 @@ export default function RootLayout({
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <Header />
-        <main className="min-h-screen">
-          {children}
-        </main>
+        <main className="min-h-screen">{children}</main>
         <Footer />
         <LiveChat />
       </body>
     </html>
   );
 }
- 
