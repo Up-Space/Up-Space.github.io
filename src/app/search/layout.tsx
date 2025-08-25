@@ -1,4 +1,4 @@
-import { getAllContent } from '../../../lib/markdown'; // Assuming this function is modified to get all content
+import { getAllContent } from '../../lib/markdown'; // Assuming this function is modified to get all content
 import ClientSearchPage from './page';
 
 // This is a server component wrapper

@@ -1,4 +1,6 @@
 
+import Link from 'next/link';
+
 export default function Dashboard() {
   const userStats = {
     articlesRead: 12,
@@ -61,15 +63,24 @@ export default function Dashboard() {
         <div className="bg-white rounded-lg shadow-lg p-6">
           <h2 className="text-xl font-bold text-gray-800 mb-4">Quick Actions</h2>
           <div className="space-y-3">
-            <button className="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors">
+            <Link 
+              href="/scholarships"
+              className="block w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition-colors text-center font-medium"
+            >
               Find New Scholarships
-            </button>
-            <button className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors">
+            </Link>
+            <Link 
+              href="/job-board"
+              className="block w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors text-center font-medium"
+            >
               Browse Job Opportunities
-            </button>
-            <button className="w-full bg-yellow-600 text-white py-3 rounded-lg hover:bg-yellow-700 transition-colors">
+            </Link>
+            <Link 
+              href="/coding-courses"
+              className="block w-full bg-yellow-600 text-white py-3 rounded-lg hover:bg-yellow-700 transition-colors text-center font-medium"
+            >
               Continue Learning
-            </button>
+            </Link>
           </div>
         </div>
       </div>

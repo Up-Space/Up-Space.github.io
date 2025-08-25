@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getAllContent } from '../../../../lib/markdown';
+import { getAllContent } from '../../lib/markdown';
 
 export default function CareerAdvancement() {
   const posts = getAllContent('career-advancement');
@@ -28,22 +28,22 @@ export default function CareerAdvancement() {
                     <span className="text-gray-500 text-sm ml-auto">{post.frontMatter.readTime}</span>
                   )}
                 </div>
-                
+
                 <h2 className="text-xl font-bold text-gray-800 mb-3 hover:text-blue-600">
                   <Link href={`/${post.frontMatter.category}/${post.slug}`}>
                     {post.frontMatter.title}
                   </Link>
                 </h2>
-                
+
                 <p className="text-gray-600 mb-4 line-clamp-3">
                   {post.frontMatter.description}
                 </p>
-                
+
                 <div className="flex items-center justify-between">
                   {post.frontMatter.date && (
                     <span className="text-gray-500 text-sm">{new Date(post.frontMatter.date).toLocaleDateString()}</span>
                   )}
-                  <Link 
+                  <Link
                     href={`/${post.frontMatter.category}/${post.slug}`}
                     className="text-blue-600 hover:text-blue-800 font-medium text-sm"
                   >

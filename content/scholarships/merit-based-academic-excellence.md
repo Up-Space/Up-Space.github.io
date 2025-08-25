@@ -67,7 +67,7 @@ Applications will be evaluated based on:
 For questions about this scholarship, please contact:
 
 **Scholarship Committee**  
-Email: scholarships@scholarsscribe.com  
+Email: scholarships@scholarsspace.com  
 Phone: (555) 123-SCHOLARS  
 Office Hours: Monday-Friday, 9 AM - 5 PM EST
 

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getAllContent } from '../../../../lib/markdown';
+import { getAllContent } from '../../lib/markdown';
 
 export default function JobBoard() {
   const jobs = getAllContent('job-board');
@@ -51,9 +51,9 @@ export default function JobBoard() {
                   )}
                 </div>
               </div>
-              
+
               <p className="text-gray-600 mb-4">{job.frontMatter.description}</p>
-              
+
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link href={`/${job.frontMatter.category}/${job.slug}`} className="bg-blue-600 text-white text-center px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                   View Details

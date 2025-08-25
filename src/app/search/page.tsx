@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { getAllPosts } from '../../../../lib/markdown';
+import { getAllPosts } from '../../lib/markdown';
 
 // This is a client component that performs the search
 export default function Search() {

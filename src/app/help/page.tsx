@@ -49,15 +49,15 @@ export default function HelpCenter() {
 
   const faqs = [
     {
-      question: "Is Scholars Scribe free to use?",
-      answer: "Yes! Scholars Scribe is completely free to use. We believe in making educational resources accessible to everyone. Some premium features may be introduced in the future, but our core content will always remain free."
+      question: "Is Scholars Space free to use?",
+      answer: "Yes! Scholars Space is completely free to use. We believe in making educational resources accessible to everyone. Some premium features may be introduced in the future, but our core content will always remain free."
     },
     {
       question: "How often is new content added?",
       answer: "We add new articles, scholarships, and opportunities daily. Our team of education professionals curates fresh content to ensure you have access to the latest information and opportunities."
     },
     {
-      question: "Can I contribute content to Scholars Scribe?",
+      question: "Can I contribute content to Scholars Space?",
       answer: "Absolutely! We welcome contributions from experts, educators, and students. You can submit articles, share scholarship opportunities, or suggest improvements through our contact form."
     },
     {

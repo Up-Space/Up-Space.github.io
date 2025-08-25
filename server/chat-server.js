@@ -27,7 +27,7 @@ wss.on('connection', (ws) => {
   setTimeout(() => {
     ws.send(JSON.stringify({
       type: 'message',
-      message: 'Hello! Welcome to Scholars Scribe support. How can I help you today?',
+      message: 'Hello! Welcome to Scholars Space support. How can I help you today?',
       sender: 'Support Agent',
       timestamp: new Date().toISOString()
     }));

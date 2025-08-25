@@ -1,7 +1,5 @@
 import { notFound } from "next/navigation";
-import { getContentBySlug, getFilePathsByDirectory, getDirectoryFromSlug } from "../../../lib/markdown";
-import { remark } from 'remark';
-import html from 'remark-html';
+import { getContentBySlug, getFilePathsByDirectory, getDirectoryFromSlug } from "../../lib/markdown";
 
 // This function generates static paths for all your content files.
 export async function generateStaticParams() {
@@ -13,7 +11,7 @@ export async function generateStaticParams() {
 }
 
 export default async function DynamicContentPage({ params }) {
-  const { slug } = params;
+  const { slug } = await params;
 
   if (!slug || slug.length === 0) {
     return notFound();
@@ -28,15 +26,14 @@ export default async function DynamicContentPage({ params }) {
 
   const slugString = slug.slice(1).join('/'); // Rejoin the rest of the path
 
-  const post = getContentBySlug(category, slugString);
+  const post = await getContentBySlug(category, slugString);
 
   if (!post) {
     return notFound();
   }
 
-  // Use remark and remark-html to convert markdown to HTML
-  const processedContent = await remark().use(html).process(post.content);
-  const contentHtml = processedContent.toString();
+  // Content is already processed by getContentBySlug
+  const contentHtml = post.content;
 
   return (
     <div className="container mx-auto px-6 py-12">

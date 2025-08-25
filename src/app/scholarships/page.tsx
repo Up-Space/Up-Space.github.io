@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { getAllContent } from '../../../../lib/markdown';
+import { getAllContent } from '../../lib/markdown';
 
 export default function Scholarships() {
   const scholarships = getAllContent('scholarships');
@@ -28,9 +28,9 @@ export default function Scholarships() {
                   </div>
                 )}
               </div>
-              
+
               <p className="text-gray-600 mb-4">{scholarship.frontMatter.description}</p>
-              
+
               <div className="grid md:grid-cols-2 gap-4 mb-4">
                 {scholarship.frontMatter.eligibility && (
                   <div>
@@ -45,7 +45,7 @@ export default function Scholarships() {
                   </div>
                 )}
               </div>
-              
+
               <div className="flex space-x-4">
                 <Link 
                   href={`/${scholarship.frontMatter.category}/${scholarship.slug}`}

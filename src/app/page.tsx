@@ -5,11 +5,11 @@ import Link from "next/link";
 export default function Home() {
   const featuredCategories = [
     {
-      title: "Career Advancement",
-      description: "Professional development tips and strategies for modern careers",
-      slug: "career-advancement",
-      icon: "💼",
-      gradient: "from-blue-500 to-blue-600"
+      title: "Blogs & News",
+      description: "Latest insights, tips, and news for academic and career success",
+      slug: "blog-posts",
+      icon: "📰",
+      gradient: "from-indigo-500 to-indigo-600"
     },
     {
       title: "Scholarships",
@@ -19,18 +19,18 @@ export default function Home() {
       gradient: "from-emerald-500 to-emerald-600"
     },
     {
-      title: "Coding Courses",
+      title: "Job Board",
+      description: "Find career opportunities and professional advancement",
+      slug: "job-board",
+      icon: "💼",
+      gradient: "from-blue-500 to-blue-600"
+    },
+    {
+      title: "Education & Coding",
       description: "Master programming and technical skills for the digital age",
       slug: "coding-courses",
       icon: "💻",
       gradient: "from-purple-500 to-purple-600"
-    },
-    {
-      title: "Personal Development",
-      description: "Build resilience, habits and mindset for lifelong success",
-      slug: "personal-development",
-      icon: "🚀",
-      gradient: "from-orange-500 to-orange-600"
     }
   ];
 
@@ -61,21 +61,21 @@ export default function Home() {
             <h1 className="text-5xl lg:text-7xl font-bold mb-8 bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent leading-tight">
               Welcome to <br />
               <span className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Scholars Scribe
+                Scholars Space
               </span>
             </h1>
             
             <p className="text-xl lg:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Your comprehensive platform for academic excellence, career growth, and personal development. 
-              Transform your educational journey with expert guidance and curated resources.
+              Your go-to platform for educational blogs, scholarship opportunities, job search, and coding courses. 
+              Stay informed, get funded, find opportunities, and advance your skills.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
               <Link 
                 href="/blog-posts" 
-                className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/25"
+                className="group inline-flex items-center px-8 py-4 bg-gradient-to-r from-indigo-500 to-indigo-600 text-white font-semibold rounded-xl hover:from-indigo-600 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-indigo-500/25"
               >
-                Explore Resources
+                Read Latest Blogs
                 <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -111,10 +111,10 @@ export default function Home() {
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-              Explore Our Categories
+              Explore Our Platform
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover comprehensive resources tailored to your academic and professional growth
+              From insightful blogs to funding opportunities, career prospects, and skill development
             </p>
           </div>
           
@@ -154,7 +154,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-8">
-                Why Choose <span className="text-blue-600">Scholars Scribe?</span>
+                Why Choose <span className="text-blue-600">Scholars Space?</span>
               </h2>
               <div className="space-y-6">
                 <div className="flex items-start">

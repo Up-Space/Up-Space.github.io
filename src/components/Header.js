@@ -36,7 +36,7 @@ export default function Header() {
           <Link href="/" className="flex flex-col items-center group">
             <Image
               src="/logo.png" 
-              alt="Scholars Scribe Logo"
+              alt="Scholars Space Logo"
               width={200} 
               height={50} 
               className="group-hover:scale-105 transition-transform"
