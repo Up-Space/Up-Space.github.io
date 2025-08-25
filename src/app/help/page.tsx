@@ -4,7 +4,7 @@ export default function HelpCenter() {
     {
       title: "Getting Started",
       icon: "🚀",
-      description: "Learn the basics of using Scholars Scribe",
+      description: "Learn the basics of using Scholars Space",
       articles: [
         "How to create your first account",
         "Navigating the dashboard",
@@ -86,7 +86,7 @@ export default function HelpCenter() {
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Help Center</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Find answers to common questions and learn how to make the most of Scholars Scribe
+            Find answers to common questions and learn how to make the most of Scholars Space
           </p>
         </div>
 

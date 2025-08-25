@@ -79,7 +79,7 @@ export default function Privacy() {
         <div className="bg-white rounded-2xl p-8 shadow-sm mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">Our Commitment to Your Privacy</h2>
           <p className="text-gray-600 leading-relaxed mb-4">
-            At Scholars Scribe, we take your privacy seriously. This Privacy Policy explains how we collect, 
+            At Scholars Space, we take your privacy seriously. This Privacy Policy explains how we collect, 
             use, disclose, and safeguard your information when you use our educational platform and services.
           </p>
           <p className="text-gray-600 leading-relaxed">
@@ -122,10 +122,10 @@ export default function Privacy() {
               Contact Us
             </a>
             <a 
-              href="mailto:privacy@scholarsscribe.com" 
+              href="mailto:hello.scholarsspace@outlook.com" 
               className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-200 border border-white/20"
             >
-              privacy@scholarsscribe.com
+              hello.scholarsspace@outlook.com
             </a>
           </div>
         </div>

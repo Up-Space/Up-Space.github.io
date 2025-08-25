@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useState } from 'react';
@@ -13,29 +12,30 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
-    
+
     try {
-      // In a real app, this would be an API call
-      // For now, we'll simulate form submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Create mailto link as fallback
-      const subject = encodeURIComponent(`[Scholars Scribe] ${formData.subject || 'Contact Form Submission'}`);
-      const body = encodeURIComponent(
-        `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-      );
-      const mailtoLink = `mailto:marufquadri@gmail.com?subject=${subject}&body=${body}`;
-      
-      // Open email client
-      window.location.href = mailtoLink;
-      
+      const form = e.target as HTMLFormElement;
+      const formData = new FormData(form);
+      const subject = `Contact Form: ${formData.get('subject')}`;
+      const body = `Name: ${formData.get('name')}\nEmail: ${formData.get('email')}\nMessage: ${formData.get('message')}`;
+
+      // Open email client with pre-filled information
+      window.location.href = `mailto:hello.scholarsspace@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
       setSubmitStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      form.reset();
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      });
     } catch (error) {
+      console.error('Form submission error:', error);
       setSubmitStatus('error');
     } finally {
       setIsSubmitting(false);
@@ -47,7 +47,7 @@ export default function Contact() {
       icon: "📧",
       title: "Email Support",
       description: "Get help via email within 24 hours",
-      contact: "marufquadri@gmail.com",
+      contact: "hello.scholarsspace@outlook.com",
       action: "Send Email"
     },
     {
@@ -61,36 +61,30 @@ export default function Contact() {
       icon: "📱",
       title: "Social Media",
       description: "Reach out through our social channels",
-      contact: "@scholarsscribe",
+      contact: "https://wa.me/message/TIAXAJNGMFRDH1",
       action: "Follow Us"
     },
     {
       icon: "📞",
       title: "Phone Support",
       description: "Speak directly with our team",
-      contact: "+1 (555) 123-4567",
+      contact: "+2348101149078",
       action: "Call Now"
     }
   ];
 
   const officeLocations = [
     {
-      city: "New York",
+      city: "Lagos",
       address: "123 Education Ave, Suite 400",
-      zipcode: "New York, NY 10001",
-      phone: "+1 (555) 123-4567"
+      zipcode: "Lagos, 102101",
+      phone: "+234 810 114 9078"
     },
     {
-      city: "San Francisco",
+      city: "Abuja",
       address: "456 Innovation Blvd, Floor 12",
-      zipcode: "San Francisco, CA 94102",
-      phone: "+1 (555) 987-6543"
-    },
-    {
-      city: "Austin",
-      address: "789 Learning St, Building C",
-      zipcode: "Austin, TX 78701",
-      phone: "+1 (555) 456-7890"
+      zipcode: "Abuja, FCT",
+      phone: "+234 708 384 6904"
     }
   ];
 
@@ -121,6 +115,7 @@ export default function Contact() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
                     <input
                       type="text"
+                      name="name"
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -132,6 +127,7 @@ export default function Contact() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
                     <input
                       type="email"
+                      name="email"
                       value={formData.email}
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
                       className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -140,10 +136,11 @@ export default function Contact() {
                     />
                   </div>
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Subject</label>
                   <select
+                    name="subject"
                     value={formData.subject}
                     onChange={(e) => setFormData({...formData, subject: e.target.value})}
                     className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -157,10 +154,11 @@ export default function Contact() {
                     <option value="feedback">Feedback & Suggestions</option>
                   </select>
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">Message</label>
                   <textarea
+                    name="message"
                     value={formData.message}
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
                     rows={6}
@@ -169,7 +167,7 @@ export default function Contact() {
                     required
                   ></textarea>
                 </div>
-                
+
                 {submitStatus === 'success' && (
                   <div className="bg-green-50 border border-green-200 text-green-700 px-4 py-3 rounded-lg mb-4">
                     <div className="flex items-center">
@@ -180,7 +178,7 @@ export default function Contact() {
                     </div>
                   </div>
                 )}
-                
+
                 {submitStatus === 'error' && (
                   <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg mb-4">
                     <div className="flex items-center">
@@ -191,7 +189,7 @@ export default function Contact() {
                     </div>
                   </div>
                 )}
-                
+
                 <button
                   type="submit"
                   disabled={isSubmitting}
@@ -231,8 +229,7 @@ export default function Contact() {
                               // Scroll to bottom to show chat widget
                               window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
                             } else if (method.title === 'Social Media') {
-                              // Open social media (placeholder)
-                              alert('Social media links coming soon!');
+                              window.open(method.contact, '_blank', 'noopener,noreferrer');
                             }
                           }}
                           className="text-blue-600 hover:text-blue-700 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity"

@@ -33,15 +33,18 @@ export default function Header() {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo and Brand */}
-          <Link href="/" className="flex flex-col items-center group">
-            <Image
-              src="/logo.png" 
-              alt="Scholars Space Logo"
-              width={200} 
-              height={50} 
-              className="group-hover:scale-105 transition-transform"
-            />
-            <p className="text-xs text-gray-500">Academic Excellence Hub</p>
+          <Link href="/" className="flex flex-col items-center group min-w-0">
+            <div className="flex flex-col items-center">
+              <Image
+                src="/logo.png" 
+                alt="Scholars Space Logo"
+                width={200} 
+                height={50} 
+                className="group-hover:scale-105 transition-transform"
+                style={{ width: 'auto', height: 'auto', maxWidth: '200px' }}
+              />
+              <p className="text-xs text-gray-500 mt-1 whitespace-nowrap">Academic Excellence Hub</p>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

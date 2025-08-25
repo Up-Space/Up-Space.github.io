@@ -110,10 +110,10 @@ export default function Terms() {
               Contact Us
             </a>
             <a 
-              href="mailto:legal@scholarsscribe.com" 
+              href="mailto:hello.scholarsspace@outlook.com" 
               className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-200 border border-white/20"
             >
-              legal@scholarsscribe.com
+              hello.scholarsspace@outlook.com
             </a>
           </div>
         </div>
