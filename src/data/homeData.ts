@@ -1,35 +1,67 @@
-export const stats = [
+// src/data/homeData.ts
+
+type IconKey = "academic-cap" | "briefcase" | "globe" | "code-bracket" | "device-mobile" | "book-open";
+
+export const stats: {
+  title: string;
+  value: string;
+  icon: IconKey;
+}[] = [
   {
     title: "Active Scholarships",
     value: "1,200+",
     icon: "academic-cap",
   },
   {
-    title: "Job Listings",
+    title: "Coding Courses",
+    value: "300+",
+    icon: "code-bracket",
+  },
+  {
+    title: "Digital Skills Learners",
+    value: "5,000+",
+    icon: "device-mobile",
+  },
+  {
+    title: "Learning Resources",
+    value: "800+",
+    icon: "book-open",
+  },
+  {
+    title: "Job Opportunities",
     value: "3,500+",
     icon: "briefcase",
   },
-  {
-    title: "Global Reach",
-    value: "75+ Countries",
-    icon: "globe",
-  },
 ];
 
-export const featuredCategories = [
+export const featuredCategories: {
+  title: string;
+  description: string;
+  icon: IconKey;
+}[] = [
   {
     title: "Scholarships",
     description: "Find funding opportunities tailored to your academic goals.",
     icon: "academic-cap",
   },
   {
-    title: "Jobs & Internships",
-    description: "Explore career-building roles across industries.",
-    icon: "briefcase",
+    title: "Coding Courses",
+    description: "Master programming skills with curated tutorials.",
+    icon: "code-bracket",
   },
   {
-    title: "Global Programs",
-    description: "Join international exchange and development programs.",
-    icon: "globe",
+    title: "Digital Skills",
+    description: "Learn tools and platforms for the digital economy.",
+    icon: "device-mobile",
+  },
+  {
+    title: "Learning Resources",
+    description: "Explore guides, platforms, and tools to support your growth.",
+    icon: "book-open",
+  },
+  {
+    title: "Job Opportunities",
+    description: "Discover internships and career-building roles.",
+    icon: "briefcase",
   },
 ];
