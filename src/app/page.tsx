@@ -1,9 +1,11 @@
 import Link from "next/link";
 import { StatCard } from "@/components/StatCard";
-import { CategoryCard } from "@/components/CategoryCard";
-import { stats, featuredCategories } from "@/data/homeData";
+import categories from "@/cms/categories.json";
+import { stats } from "@/data/homeData";
 
 export default function HomePage() {
+  const featured = categories.filter((cat) => cat.featured);
+
   return (
     <>
       <main className="bg-gray-50">
@@ -37,8 +39,22 @@ export default function HomePage() {
           <div className="container mx-auto px-6 text-center">
             <h2 className="text-4xl font-bold mb-12">Featured Categories</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {featuredCategories.map((category, index) => (
-                <CategoryCard key={index} {...category} />
+              {featured.map((cat) => (
+                <Link
+                  key={cat.slug}
+                  href={`/${cat.slug}`}
+                  className="block border rounded-lg overflow-hidden shadow hover:shadow-lg transition"
+                >
+                  <img
+                    src={cat.coverImage}
+                    alt={cat.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-4">
+                    <h3 className="text-xl font-semibold">{cat.title}</h3>
+                    <p className="text-gray-500 text-sm">{cat.description}</p>
+                  </div>
+                </Link>
               ))}
             </div>
           </div>
