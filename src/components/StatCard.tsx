@@ -4,7 +4,7 @@ import {
   BriefcaseIcon,
   GlobeAltIcon,
   CodeBracketIcon,
-  DevicePhoneMobileIcon,
+  DeviceTabletIcon,
   BookOpenIcon,
 } from "@heroicons/react/24/outline";
 
@@ -14,7 +14,7 @@ const iconMap = {
   "briefcase": <BriefcaseIcon className="w-6 h-6" />,
   "globe": <GlobeAltIcon className="w-6 h-6" />,
   "code-bracket": <CodeBracketIcon className="w-6 h-6" />,
-  "device-mobile": <DevicePhoneMobileIcon className="w-6 h-6" />,
+  "device-mobile": <DeviceTabletIcon className="w-6 h-6" />,
   "book-open": <BookOpenIcon className="w-6 h-6" />,
 };
 

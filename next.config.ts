@@ -1,28 +1,37 @@
 
 import type { NextConfig } from "next";
-import createMDX from '@next/mdx';
-import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
 
 const nextConfig: NextConfig = {
-  trailingSlash: true,
-  images: {
-    unoptimized: true,
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Access-Control-Allow-Origin',
+            value: '*',
+          },
+          {
+            key: 'Access-Control-Allow-Methods',
+            value: 'GET, POST, PUT, DELETE, OPTIONS',
+          },
+          {
+            key: 'Access-Control-Allow-Headers',
+            value: 'Content-Type, Authorization',
+          },
+        ],
+      },
+    ];
   },
-  allowedDevOrigins: [
-    "http://0.0.0.0:3000",
-    "http://localhost:3000",
-    "https://*.replit.dev",
-    "https://*.repl.co",
-  ],
+  experimental: {
+    allowedDevOrigins: [
+      "http://0.0.0.0:3000",
+      "http://localhost:3000",
+      "https://*.replit.dev",
+      "https://*.repl.co",
+    ],
+  },
   pageExtensions: ["ts", "tsx", "js", "jsx", "mdx"],
 };
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeHighlight],
-  },
-});
-
-export default withMDX(nextConfig);
+export default nextConfig;

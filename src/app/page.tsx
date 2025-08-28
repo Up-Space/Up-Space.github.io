@@ -15,7 +15,7 @@ const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = 
   'academic-cap': AcademicCapIcon,
   'briefcase': BriefcaseIcon,
   'code-bracket': CodeBracketIcon,
-  'DeviceTabletIcon': DeviceTabletIcon,
+  'device-mobile': DeviceTabletIcon,
   'book-open': BookOpenIcon,
   'globe': GlobeAltIcon,
 };
