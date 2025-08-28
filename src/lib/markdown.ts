@@ -10,6 +10,21 @@ export interface FrontMatter {
   title: string;
   description?: string;
   date?: string;
+  author?: string;
+  category?: string;
+  tags?: string[];
+  level?: string;
+  duration?: string;
+  prerequisites?: string;
+  featured?: boolean;
+  cover_image?: string;
+  amount?: string;
+  deadline?: string;
+  eligibility?: string;
+  applicationLink?: string;
+  attachment?: string;
+  image?: string;
+  readTime?: string;
   [key: string]: any;
 }
 
