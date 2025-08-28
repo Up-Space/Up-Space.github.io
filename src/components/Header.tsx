@@ -9,9 +9,9 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
 
-  // Split categories into main and more
-  const mainMenuItems = categories.filter((cat, i) => i < 7);
-  const moreTopics = categories.slice(7);
+  // Filter categories by navGroup
+  const mainMenuItems = categories.filter((cat) => cat.navGroup === 'main');
+  const moreTopics = categories.filter((cat) => cat.navGroup === 'dropdown');
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">

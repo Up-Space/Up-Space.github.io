@@ -2,12 +2,13 @@
 [
   {
     "slug": "blog-posts",
-    "title": "Blog Posts",
+    "title": "Blogs & News",
     "description": "Insights, stories, and updates from across the community.",
     "icon": "/icons/icon_blog_posts_orange_v1.png",
     "coverImage": "/images/categories/blog-posts.jpg",
     "folder": "blog-posts",
-    "featured": false
+    "featured": false,
+    "navGroup": "main"
   },
   {
     "slug": "career-advancement",
@@ -16,7 +17,8 @@
     "icon": "/icons/icon_career_advancement_indigo_v1.png",
     "coverImage": "/images/categories/career-advancement.jpg",
     "folder": "career-advancement",
-    "featured": true
+    "featured": true,
+    "navGroup": "main"
   },
   {
     "slug": "coding-courses",
@@ -25,7 +27,8 @@
     "icon": "/icons/icon_coding_courses_blue_v1.png",
     "coverImage": "/images/categories/coding-courses.jpg",
     "folder": "coding-courses",
-    "featured": true
+    "featured": true,
+    "navGroup": "main"
   },
   {
     "slug": "creative-skills",
@@ -34,7 +37,8 @@
     "icon": "/icons/icon_creative_skills_skyblue_v1.png",
     "coverImage": "/images/categories/creative-skills.jpg",
     "folder": "creative-skills",
-    "featured": false
+    "featured": false,
+    "navGroup": "dropdown"
   },
   {
     "slug": "digital-skills",
@@ -43,7 +47,8 @@
     "icon": "/icons/icon_digital_skills_violet_v1.png",
     "coverImage": "/images/categories/digital-skills.jpg",
     "folder": "digital-skills",
-    "featured": true
+    "featured": true,
+    "navGroup": "main"
   },
   {
     "slug": "education",
@@ -52,7 +57,8 @@
     "icon": "/icons/icon_education_navyblue_v1.png",
     "coverImage": "/images/categories/education.jpg",
     "folder": "education",
-    "featured": true
+    "featured": true,
+    "navGroup": "main"
   },
   {
     "slug": "entrepreneurship",
@@ -61,25 +67,28 @@
     "icon": "/icons/icon_entrepreneurship_red_v1.png",
     "coverImage": "/images/categories/entrepreneurship.jpg",
     "folder": "entrepreneurship",
-    "featured": true
+    "featured": true,
+    "navGroup": "dropdown"
   },
   {
     "slug": "financial-aid",
-    "title": "Financial Aid",
+    "title": "Financial Aids",
     "description": "Find scholarships, grants, and funding opportunities.",
     "icon": "/icons/icon_financial_aid_green_v1.png",
     "coverImage": "/images/categories/financial-aid.jpg",
     "folder": "financial-aid",
-    "featured": true
+    "featured": true,
+    "navGroup": "dropdown"
   },
   {
     "slug": "health-wellness",
-    "title": "Health & Wellness",
+    "title": "Health Wellness",
     "description": "Support your physical and mental well-being.",
     "icon": "/icons/icon_health_wellness_turquoise_v1.png",
     "coverImage": "/images/categories/health-wellness.jpg",
     "folder": "health-wellness",
-    "featured": false
+    "featured": false,
+    "navGroup": "dropdown"
   },
   {
     "slug": "job-board",
@@ -88,7 +97,8 @@
     "icon": "/icons/icon_job_board_teal_v1.png",
     "coverImage": "/images/categories/job-board.jpg",
     "folder": "job-board",
-    "featured": true
+    "featured": true,
+    "navGroup": "main"
   },
   {
     "slug": "learning-resources",
@@ -97,7 +107,8 @@
     "icon": "/icons/icon_learning_resources_purple_v1.png",
     "coverImage": "/images/categories/learning-resources.jpg",
     "folder": "learning-resources",
-    "featured": false
+    "featured": false,
+    "navGroup": "main"
   },
   {
     "slug": "lifestyle",
@@ -106,7 +117,8 @@
     "icon": "/icons/icon_lifestyle_coralorange_v1.png",
     "coverImage": "/images/categories/lifestyle.jpg",
     "folder": "lifestyle",
-    "featured": false
+    "featured": false,
+    "navGroup": "main"
   },
   {
     "slug": "personal-development",
@@ -115,7 +127,8 @@
     "icon": "/icons/icon_personal_development_leafgreen_v1.png",
     "coverImage": "/images/categories/personal-development.jpg",
     "folder": "personal-development",
-    "featured": true
+    "featured": true,
+    "navGroup": "dropdown"
   },
   {
     "slug": "scholarships",
@@ -124,6 +137,7 @@
     "icon": "/icons/icon_scholarships_gold_v1.png",
     "coverImage": "/images/categories/scholarships.jpg",
     "folder": "scholarships",
-    "featured": true
+    "featured": true,
+    "navGroup": "main"
   }
 ]
