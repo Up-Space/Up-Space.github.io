@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import Image from 'next/image';
 import categories from '../../cms/categories.json';
@@ -12,11 +11,11 @@ import {
   GlobeAltIcon,
 } from '@heroicons/react/24/outline';
 
-const iconMap = {
+const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
   'academic-cap': AcademicCapIcon,
   'briefcase': BriefcaseIcon,
   'code-bracket': CodeBracketIcon,
-  'device-mobile': DevicePhoneIcon,
+  'DeviceTabletIcon': DeviceTabletIcon,
   'book-open': BookOpenIcon,
   'globe': GlobeAltIcon,
 };
@@ -108,7 +107,7 @@ export default function HomePage() {
               Discover curated resources across multiple domains to support your academic and professional growth.
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {featuredCats.map((category) => (
               <Link key={category.slug} href={`/${category.slug}`}>
