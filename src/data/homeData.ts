@@ -52,7 +52,7 @@ export const featuredCategories: {
   {
     title: "Digital Skills",
     description: "Learn tools and platforms for the digital economy.",
-    icon: "device-mobile",
+    icon: "DeviceTabletIcon",
   },
   {
     title: "Learning Resources",

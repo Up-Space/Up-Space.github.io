@@ -12,6 +12,8 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: [
     "http://0.0.0.0:3000",
     "http://localhost:3000",
+    "https://*.replit.dev",
+    "https://*.repl.co",
   ],
   pageExtensions: ["ts", "tsx", "js", "jsx", "mdx"],
 };

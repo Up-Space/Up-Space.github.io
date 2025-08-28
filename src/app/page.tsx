@@ -7,7 +7,7 @@ import {
   AcademicCapIcon,
   BriefcaseIcon,
   CodeBracketIcon,
-  DevicePhoneIcon,
+  DeviceTabletIcon,
   BookOpenIcon,
   GlobeAltIcon,
 } from '@heroicons/react/24/outline';
