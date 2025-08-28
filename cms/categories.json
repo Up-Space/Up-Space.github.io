@@ -1,9 +1,10 @@
+
 [
   {
     "slug": "blog-posts",
     "title": "Blog Posts",
     "description": "Insights, stories, and updates from across the community.",
-    "icon": "document-text",
+    "icon": "/icons/icon_blog_posts_orange_v1.png",
     "coverImage": "/images/categories/blog-posts.jpg",
     "folder": "blog-posts",
     "featured": false
@@ -12,7 +13,7 @@
     "slug": "career-advancement",
     "title": "Career Advancement",
     "description": "Resources to help you grow professionally and reach new heights.",
-    "icon": "chart-bar",
+    "icon": "/icons/icon_career_advancement_indigo_v1.png",
     "coverImage": "/images/categories/career-advancement.jpg",
     "folder": "career-advancement",
     "featured": true
@@ -21,7 +22,7 @@
     "slug": "coding-courses",
     "title": "Coding Courses",
     "description": "Learn to code with curated tutorials and bootcamps.",
-    "icon": "code-bracket",
+    "icon": "/icons/icon_coding_courses_blue_v1.png",
     "coverImage": "/images/categories/coding-courses.jpg",
     "folder": "coding-courses",
     "featured": true
@@ -30,7 +31,7 @@
     "slug": "creative-skills",
     "title": "Creative Skills",
     "description": "Explore design, writing, and other creative disciplines.",
-    "icon": "paint-brush",
+    "icon": "/icons/icon_creative_skills_skyblue_v1.png",
     "coverImage": "/images/categories/creative-skills.jpg",
     "folder": "creative-skills",
     "featured": false
@@ -39,7 +40,7 @@
     "slug": "digital-skills",
     "title": "Digital Skills",
     "description": "Master tools and platforms for the digital economy.",
-    "icon": "device-mobile",
+    "icon": "/icons/icon_digital_skills_violet_v1.png",
     "coverImage": "/images/categories/digital-skills.jpg",
     "folder": "digital-skills",
     "featured": true
@@ -48,7 +49,7 @@
     "slug": "education",
     "title": "Education",
     "description": "Academic programs, study tips, and learning pathways.",
-    "icon": "academic-cap",
+    "icon": "/icons/icon_education_navyblue_v1.png",
     "coverImage": "/images/categories/education.jpg",
     "folder": "education",
     "featured": true
@@ -57,7 +58,7 @@
     "slug": "entrepreneurship",
     "title": "Entrepreneurship",
     "description": "Launch and grow your own business or startup.",
-    "icon": "light-bulb",
+    "icon": "/icons/icon_entrepreneurship_red_v1.png",
     "coverImage": "/images/categories/entrepreneurship.jpg",
     "folder": "entrepreneurship",
     "featured": true
@@ -66,7 +67,7 @@
     "slug": "financial-aid",
     "title": "Financial Aid",
     "description": "Find scholarships, grants, and funding opportunities.",
-    "icon": "cash",
+    "icon": "/icons/icon_financial_aid_green_v1.png",
     "coverImage": "/images/categories/financial-aid.jpg",
     "folder": "financial-aid",
     "featured": true
@@ -75,7 +76,7 @@
     "slug": "health-wellness",
     "title": "Health & Wellness",
     "description": "Support your physical and mental well-being.",
-    "icon": "heart",
+    "icon": "/icons/icon_health_wellness_turquoise_v1.png",
     "coverImage": "/images/categories/health-wellness.jpg",
     "folder": "health-wellness",
     "featured": false
@@ -84,7 +85,7 @@
     "slug": "job-board",
     "title": "Job Board",
     "description": "Browse job listings and internship opportunities.",
-    "icon": "briefcase",
+    "icon": "/icons/icon_job_board_teal_v1.png",
     "coverImage": "/images/categories/job-board.jpg",
     "folder": "job-board",
     "featured": true
@@ -93,7 +94,7 @@
     "slug": "learning-resources",
     "title": "Learning Resources",
     "description": "Guides, platforms, and tools to support your growth.",
-    "icon": "book-open",
+    "icon": "/icons/icon_learning_resources_purple_v1.png",
     "coverImage": "/images/categories/learning-resources.jpg",
     "folder": "learning-resources",
     "featured": false
@@ -102,7 +103,7 @@
     "slug": "lifestyle",
     "title": "Lifestyle",
     "description": "Tips and ideas for living a balanced, fulfilling life.",
-    "icon": "sparkles",
+    "icon": "/icons/icon_lifestyle_coralorange_v1.png",
     "coverImage": "/images/categories/lifestyle.jpg",
     "folder": "lifestyle",
     "featured": false
@@ -111,7 +112,7 @@
     "slug": "personal-development",
     "title": "Personal Development",
     "description": "Grow your mindset, habits, and self-awareness.",
-    "icon": "user",
+    "icon": "/icons/icon_personal_development_leafgreen_v1.png",
     "coverImage": "/images/categories/personal-development.jpg",
     "folder": "personal-development",
     "featured": true
@@ -120,7 +121,7 @@
     "slug": "scholarships",
     "title": "Scholarships",
     "description": "Discover funding opportunities for your education.",
-    "icon": "academic-cap",
+    "icon": "/icons/icon_scholarships_gold_v1.png",
     "coverImage": "/images/categories/scholarships.jpg",
     "folder": "scholarships",
     "featured": true
