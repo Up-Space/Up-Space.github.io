@@ -1,8 +1,10 @@
+
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { remark } from "remark";
-import html from "remark-html";
+import { compile } from '@mdx-js/mdx';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
 
 const contentDirectory = path.join(process.cwd(), "content");
 
@@ -32,6 +34,7 @@ export interface Post {
   slug: string;
   frontMatter: FrontMatter;
   content: string;
+  mdxContent?: string;
 }
 
 export interface StaticPath {
@@ -52,18 +55,33 @@ export async function getContentBySlug(
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
 
-  const processedContent = await remark().use(html).process(content);
-  const contentHtml = processedContent.toString();
+  try {
+    // Compile MDX content
+    const mdxContent = await compile(content, {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypeHighlight],
+      outputFormat: 'function-body',
+    });
 
-  return {
-    slug,
-    frontMatter: data as FrontMatter,
-    content: contentHtml,
-  };
+    return {
+      slug,
+      frontMatter: data as FrontMatter,
+      content: content, // Keep original markdown for fallback
+      mdxContent: String(mdxContent),
+    };
+  } catch (error) {
+    console.error(`Error compiling MDX for ${slug}:`, error);
+    // Fallback to regular markdown if MDX compilation fails
+    return {
+      slug,
+      frontMatter: data as FrontMatter,
+      content: content,
+    };
+  }
 }
 
 // Get all content from a specific category
-export function getAllContent(category: string): Omit<Post, "content">[] {
+export function getAllContent(category: string): Omit<Post, "content" | "mdxContent">[] {
   const categoryPath = path.join(contentDirectory, category);
 
   if (!fs.existsSync(categoryPath)) {
@@ -114,8 +132,8 @@ export function getDirectoryFromSlug(slug: string[] | undefined): string | null 
 }
 
 // Get all content from all directories
-export function getAllPosts(): (Omit<Post, "content"> & { category: string })[] {
-  const allPosts: (Omit<Post, "content"> & { category: string })[] = [];
+export function getAllPosts(): (Omit<Post, "content" | "mdxContent"> & { category: string })[] {
+  const allPosts: (Omit<Post, "content" | "mdxContent"> & { category: string })[] = [];
 
   const directories = fs
     .readdirSync(contentDirectory)

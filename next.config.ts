@@ -1,5 +1,8 @@
+
 import type { NextConfig } from "next";
-import path from "path";
+import createMDX from '@next/mdx';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
 
 const nextConfig: NextConfig = {
   trailingSlash: true,
@@ -11,22 +14,13 @@ const nextConfig: NextConfig = {
     "http://localhost:3000",
   ],
   pageExtensions: ["ts", "tsx", "js", "jsx", "mdx"],
-  webpack(config) {
-    config.module.rules.push({
-      test: /\.mdx$/,
-      use: [
-        {
-          loader: "@mdx-js/loader",
-          options: {
-            // You can add remark/rehype plugins here if needed
-          },
-        },
-      ],
-      include: path.resolve(__dirname),
-    });
-
-    return config;
-  },
 };
 
-export default nextConfig;
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkGfm],
+    rehypePlugins: [rehypeHighlight],
+  },
+});
+
+export default withMDX(nextConfig);
