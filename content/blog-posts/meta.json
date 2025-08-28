@@ -1,0 +1,12 @@
+
+{
+  "title": "Blogs & News",
+  "description": "Insights, stories, and updates from across the community.",
+  "keywords": ["blog", "news", "insights", "community", "updates"],
+  "seoTitle": "Latest Blogs & News - Scholars Space",
+  "seoDescription": "Stay updated with the latest insights, stories, and news from the Scholars Space community.",
+  "sortBy": "date",
+  "sortOrder": "desc",
+  "featuredPosts": [],
+  "canonicalUrl": "/blog-posts"
+}
