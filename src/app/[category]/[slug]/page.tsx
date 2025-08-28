@@ -1,9 +1,9 @@
 
 import { notFound } from "next/navigation";
 import { MDXRemote } from 'next-mdx-remote/rsc';
-import categories from "@/cms/categories.json";
-import { getContentBySlug } from "@/lib/markdown";
-import MDXContentProvider from "@/components/MDXProvider";
+import categories from "../../../../cms/categories.json";
+import { getContentBySlug } from "../../../lib/markdown";
+import MDXContentProvider from "../../../components/MDXProvider";
 
 interface Params {
   params: {

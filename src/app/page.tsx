@@ -1,7 +1,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import categories from '@/cms/categories.json';
+import categories from '../../cms/categories.json';
 import { stats, featuredCategories } from '@/src/data/homeData';
 import {
   AcademicCapIcon,

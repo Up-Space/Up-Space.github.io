@@ -1,7 +1,7 @@
 
 import { notFound } from "next/navigation";
-import categories from "@/cms/categories.json";
-import { getAllContent } from "@/lib/markdown";
+import categories from "../../../cms/categories.json";
+import { getAllContent } from "../../lib/markdown";
 import Link from "next/link";
 
 interface Params {
