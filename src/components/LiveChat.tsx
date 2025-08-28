@@ -3,14 +3,22 @@
 
 import { useState, useEffect, useRef } from 'react';
 
+interface Message {
+  id: number;
+  text: string;
+  sender: string;
+  timestamp: string;
+  isUser: boolean;
+}
+
 export default function LiveChat() {
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [inputMessage, setInputMessage] = useState('');
   const [isConnected, setIsConnected] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
-  const ws = useRef(null);
-  const messagesEndRef = useRef(null);
+  const ws = useRef<WebSocket | null>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -21,65 +29,111 @@ export default function LiveChat() {
   }, [messages]);
 
   const connectWebSocket = () => {
-    // Replace with your WebSocket server URL
-    ws.current = new WebSocket('ws://localhost:8080');
-    
-    ws.current.onopen = () => {
-      setIsConnected(true);
-      console.log('Connected to chat server');
-    };
-
-    ws.current.onmessage = (event) => {
-      const data = JSON.parse(event.data);
+    try {
+      // Use the chat server port from server/chat-server.js
+      const wsUrl = `ws://${window.location.hostname}:8080`;
+      ws.current = new WebSocket(wsUrl);
       
-      if (data.type === 'message') {
-        setMessages(prev => [...prev, {
-          id: Date.now(),
-          text: data.message,
-          sender: data.sender || 'Support',
-          timestamp: new Date().toLocaleTimeString(),
-          isUser: false
-        }]);
-      } else if (data.type === 'typing') {
-        setIsTyping(data.isTyping);
-      }
-    };
+      ws.current.onopen = () => {
+        setIsConnected(true);
+        console.log('Connected to chat server');
+      };
 
-    ws.current.onclose = () => {
-      setIsConnected(false);
-      console.log('Disconnected from chat server');
-    };
+      ws.current.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          
+          if (data.type === 'message') {
+            setMessages(prev => [...prev, {
+              id: Date.now(),
+              text: data.message,
+              sender: data.sender || 'Support',
+              timestamp: new Date().toLocaleTimeString(),
+              isUser: false
+            }]);
+          } else if (data.type === 'typing') {
+            setIsTyping(data.isTyping);
+          }
+        } catch (error) {
+          console.error('Error parsing WebSocket message:', error);
+        }
+      };
 
-    ws.current.onerror = (error) => {
-      console.error('WebSocket error:', error);
-      setIsConnected(false);
-    };
+      ws.current.onclose = () => {
+        setIsConnected(false);
+        console.log('Disconnected from chat server');
+      };
+
+      ws.current.onerror = (error) => {
+        console.error('WebSocket error:', error);
+        setIsConnected(false);
+        // Fallback to mock chat if WebSocket fails
+        initializeMockChat();
+      };
+    } catch (error) {
+      console.error('Failed to connect to WebSocket:', error);
+      initializeMockChat();
+    }
+  };
+
+  const initializeMockChat = () => {
+    setIsConnected(true);
+    setMessages([{
+      id: 1,
+      text: "Hi! I'm here to help you navigate Scholars Space. How can I assist you today?",
+      sender: 'Support Bot',
+      timestamp: new Date().toLocaleTimeString(),
+      isUser: false
+    }]);
   };
 
   const sendMessage = () => {
-    if (inputMessage.trim() && ws.current && isConnected) {
-      const message = {
+    if (!inputMessage.trim()) return;
+
+    const message: Message = {
+      id: Date.now(),
+      text: inputMessage,
+      sender: 'You',
+      timestamp: new Date().toLocaleTimeString(),
+      isUser: true
+    };
+
+    setMessages(prev => [...prev, message]);
+
+    if (ws.current && ws.current.readyState === WebSocket.OPEN) {
+      const wsMessage = {
         type: 'message',
         message: inputMessage,
         sender: 'User',
         timestamp: new Date().toISOString()
       };
-
-      ws.current.send(JSON.stringify(message));
-      
-      setMessages(prev => [...prev, {
-        id: Date.now(),
-        text: inputMessage,
-        sender: 'You',
-        timestamp: new Date().toLocaleTimeString(),
-        isUser: true
-      }]);
-      
-      setInputMessage('');
+      ws.current.send(JSON.stringify(wsMessage));
+    } else {
+      // Mock response for fallback
+      setTimeout(() => {
+        const responses = [
+          "Thanks for your message! Our team will get back to you shortly.",
+          "I understand your concern. Let me assist you with that.",
+          "That's a great question! Here's what I can tell you...",
+          "I'll need a moment to look that up for you.",
+          "Is there anything specific you'd like to know about our services?"
+        ];
+        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+        
+        setMessages(prev => [...prev, {
+          id: Date.now(),
+          text: randomResponse,
+          sender: 'Support Bot',
+          timestamp: new Date().toLocaleTimeString(),
+          isUser: false
+        }]);
+      }, 1000);
     }
+
+    setInputMessage('');
   };
 
-  const handleKeyPress = (e) => {
+  const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter') {
       sendMessage();
     }
@@ -103,7 +157,8 @@ export default function LiveChat() {
       {!isOpen && (
         <button
           onClick={() => setIsOpen(true)}
-          className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all duration-200 animate-pulse"
+          className="bg-blue-600 hover:bg-blue-700 text-white rounded-full p-4 shadow-lg transition-all duration-200 transform hover:scale-110"
+          aria-label="Open live chat"
         >
           <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
@@ -122,7 +177,8 @@ export default function LiveChat() {
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-white hover:text-gray-200"
+              className="text-white hover:text-gray-200 transition-colors"
+              aria-label="Close chat"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -131,13 +187,7 @@ export default function LiveChat() {
           </div>
 
           {/* Messages */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-3">
-            {messages.length === 0 && (
-              <div className="text-center text-gray-500 text-sm">
-                <p>👋 Hi! How can we help you today?</p>
-              </div>
-            )}
-            
+          <div className="flex-1 p-4 overflow-y-auto space-y-3">            
             {messages.map((message) => (
               <div key={message.id} className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}>
                 <div className={`max-w-xs px-3 py-2 rounded-lg ${
@@ -176,12 +226,13 @@ export default function LiveChat() {
                 onKeyPress={handleKeyPress}
                 placeholder={isConnected ? "Type a message..." : "Connecting..."}
                 disabled={!isConnected}
-                className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100"
+                className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 text-sm"
               />
               <button
                 onClick={sendMessage}
                 disabled={!isConnected || !inputMessage.trim()}
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-300 transition-colors"
+                aria-label="Send message"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
@@ -192,124 +243,5 @@ export default function LiveChat() {
         </div>
       )}
     </div>
-  );
-}
-'use client';
-
-import { useState } from 'react';
-
-export default function LiveChat() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      text: "Hi! I'm here to help you navigate Scholars Space. How can I assist you today?",
-      sender: 'bot',
-      timestamp: new Date().toLocaleTimeString(),
-    },
-  ]);
-
-  const handleSendMessage = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!message.trim()) return;
-
-    const newMessage = {
-      id: messages.length + 1,
-      text: message,
-      sender: 'user',
-      timestamp: new Date().toLocaleTimeString(),
-    };
-
-    setMessages([...messages, newMessage]);
-    setMessage('');
-
-    // Simulate bot response
-    setTimeout(() => {
-      const botResponse = {
-        id: messages.length + 2,
-        text: "Thanks for your message! Our team will get back to you shortly. In the meantime, feel free to explore our resources.",
-        sender: 'bot',
-        timestamp: new Date().toLocaleTimeString(),
-      };
-      setMessages(prev => [...prev, botResponse]);
-    }, 1000);
-  };
-
-  return (
-    <>
-      {/* Chat Toggle Button */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg flex items-center justify-center transition-all duration-200 transform hover:scale-110 z-50"
-      >
-        {isOpen ? (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
-        ) : (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-          </svg>
-        )}
-      </button>
-
-      {/* Chat Window */}
-      {isOpen && (
-        <div className="fixed bottom-24 right-6 w-80 h-96 bg-white rounded-lg shadow-xl border border-gray-200 flex flex-col z-50">
-          {/* Header */}
-          <div className="bg-blue-600 text-white p-4 rounded-t-lg">
-            <h3 className="font-semibold">Live Chat Support</h3>
-            <p className="text-sm text-blue-100">We're here to help!</p>
-          </div>
-
-          {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-3">
-            {messages.map((msg) => (
-              <div
-                key={msg.id}
-                className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
-              >
-                <div
-                  className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
-                    msg.sender === 'user'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-100 text-gray-800'
-                  }`}
-                >
-                  <p>{msg.text}</p>
-                  <p className={`text-xs mt-1 ${
-                    msg.sender === 'user' ? 'text-blue-100' : 'text-gray-500'
-                  }`}>
-                    {msg.timestamp}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Input */}
-          <form onSubmit={handleSendMessage} className="p-4 border-t border-gray-200">
-            <div className="flex space-x-2">
-              <input
-                type="text"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Type your message..."
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm"
-              />
-              <button
-                type="submit"
-                className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                </svg>
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
-    </>
   );
 }

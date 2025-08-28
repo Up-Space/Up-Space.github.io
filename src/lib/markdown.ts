@@ -1,38 +1,33 @@
-
-import fs from "fs";
-import path from "path";
-import matter from "gray-matter";
+import fs from 'fs';
+import path from 'path';
+import matter from 'gray-matter';
 import { compile } from '@mdx-js/mdx';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
 
-const contentDirectory = path.join(process.cwd(), "content");
+const contentDirectory = path.join(process.cwd(), 'content');
 
-export interface FrontMatter {
+export interface PostMetadata {
   title: string;
-  description?: string;
-  date?: string;
+  description: string;
   author?: string;
-  category?: string;
+  date: string;
+  category: string;
   tags?: string[];
   level?: string;
   duration?: string;
   prerequisites?: string;
   featured?: boolean;
   cover_image?: string;
-  amount?: string;
-  deadline?: string;
-  eligibility?: string;
-  applicationLink?: string;
   attachment?: string;
-  image?: string;
+  applicationLink?: string;
   readTime?: string;
   [key: string]: any;
 }
 
 export interface Post {
   slug: string;
-  frontMatter: FrontMatter;
+  frontMatter: PostMetadata;
   content: string;
   mdxContent?: string;
 }
@@ -47,15 +42,15 @@ export async function getContentBySlug(
   slug: string
 ): Promise<Post | null> {
   const categoryPath = path.join(contentDirectory, category);
-  
+
   // Recursively search for the file
   function findFile(dir: string): string | null {
     const items = fs.readdirSync(dir);
-    
+
     for (const item of items) {
       const fullPath = path.join(dir, item);
       const stat = fs.statSync(fullPath);
-      
+
       if (stat.isDirectory()) {
         const found = findFile(fullPath);
         if (found) return found;
@@ -65,7 +60,7 @@ export async function getContentBySlug(
     }
     return null;
   }
-  
+
   const fullPath = findFile(categoryPath);
   if (!fullPath || !fs.existsSync(fullPath)) {
     return null;
@@ -84,7 +79,7 @@ export async function getContentBySlug(
 
     return {
       slug,
-      frontMatter: data as FrontMatter,
+      frontMatter: data as PostMetadata,
       content: content, // Keep original markdown for fallback
       mdxContent: String(mdxContent),
     };
@@ -93,7 +88,7 @@ export async function getContentBySlug(
     // Fallback to regular markdown if MDX compilation fails
     return {
       slug,
-      frontMatter: data as FrontMatter,
+      frontMatter: data as PostMetadata,
       content: content,
     };
   }
@@ -107,26 +102,26 @@ export function getAllContent(category: string): Omit<Post, "content" | "mdxCont
     return [];
   }
 
-  const allFiles: Array<{ slug: string; frontMatter: FrontMatter }> = [];
+  const allFiles: Array<{ slug: string; frontMatter: PostMetadata }> = [];
 
   // Recursively find all .md files in subdirectories
   function findMarkdownFiles(dir: string): void {
     const items = fs.readdirSync(dir);
-    
+
     items.forEach((item) => {
       const fullPath = path.join(dir, item);
       const stat = fs.statSync(fullPath);
-      
+
       if (stat.isDirectory()) {
         findMarkdownFiles(fullPath);
       } else if (item.endsWith('.md')) {
         const slug = item.replace(/\.md$/, "");
         const fileContents = fs.readFileSync(fullPath, "utf8");
         const { data } = matter(fileContents);
-        
+
         allFiles.push({
           slug,
-          frontMatter: data as FrontMatter,
+          frontMatter: data as PostMetadata,
         });
       }
     });
@@ -186,7 +181,7 @@ export function getAllPosts(): (Omit<Post, "content" | "mdxContent"> & { categor
 
         allPosts.push({
           slug,
-          frontMatter: data as FrontMatter,
+          frontMatter: data as PostMetadata,
           category: dir,
         });
       });
