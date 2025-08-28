@@ -28,7 +28,7 @@ export default function Header() {
                 className="group-hover:scale-105 transition-transform"
                 style={{ width: 'auto', height: 'auto', maxWidth: '200px' }}
               />
-              <p className="text-xs text-gray-500 mt-1 whitespace-nowrap">Academic Excellence Hub</p>
+              <p className="text-xs text-gray-600 mt-1 whitespace-nowrap font-medium">Your Space to Learn, Create, and Lead</p>
             </div>
           </Link>
 
