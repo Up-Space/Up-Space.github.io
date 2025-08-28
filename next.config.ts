@@ -23,13 +23,10 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  experimental: {
-    allowedDevOrigins: [
-      "http://0.0.0.0:3000",
-      "http://localhost:3000",
-      "https://*.replit.dev",
-      "https://*.repl.co",
-    ],
+  experimental: {},
+  // Configure allowed origins for development
+  async rewrites() {
+    return [];
   },
   pageExtensions: ["ts", "tsx", "js", "jsx", "mdx"],
 };

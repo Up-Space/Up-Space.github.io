@@ -26,7 +26,7 @@ export default function Header() {
                 width={200}
                 height={50}
                 className="group-hover:scale-105 transition-transform"
-                style={{ width: 'auto', height: 'auto', maxWidth: '200px' }}
+                style={{ width: 'auto', height: 'auto', maxWidth: '200px', maxHeight: '50px' }}
               />
               <p className="text-xs text-gray-600 mt-1 whitespace-nowrap font-medium">Your Space to Learn, Create, and Lead</p>
             </div>

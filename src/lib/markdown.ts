@@ -189,3 +189,54 @@ export function getAllPosts(): (Omit<Post, "content" | "mdxContent"> & { categor
 
   return allPosts;
 }
+
+export async function getAllPostsInCategory(category: string) {
+  try {
+    const categoryPath = path.join(contentDirectory, category);
+
+    if (!fs.existsSync(categoryPath)) {
+      return [];
+    }
+
+    const posts: any[] = [];
+
+    // Walk through year directories
+    const years = fs.readdirSync(categoryPath, { withFileTypes: true })
+      .filter(dirent => dirent.isDirectory())
+      .map(dirent => dirent.name);
+
+    for (const year of years) {
+      const yearPath = path.join(categoryPath, year);
+      const months = fs.readdirSync(yearPath, { withFileTypes: true })
+        .filter(dirent => dirent.isDirectory())
+        .map(dirent => dirent.name);
+
+      for (const month of months) {
+        const monthPath = path.join(yearPath, month);
+        const files = fs.readdirSync(monthPath)
+          .filter(name => name.endsWith('.md'));
+
+        for (const file of files) {
+          const filePath = path.join(monthPath, file);
+          const fileContents = fs.readFileSync(filePath, 'utf8');
+          const { data, content } = matter(fileContents);
+
+          posts.push({
+            slug: file.replace(/\.md$/, ''),
+            category,
+            year,
+            month,
+            ...data,
+            content,
+          });
+        }
+      }
+    }
+
+    // Sort posts by date (newest first)
+    return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  } catch (error) {
+    console.error(`Error loading posts for category ${category}:`, error);
+    return [];
+  }
+}
