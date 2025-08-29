@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import categories from '../../cms/categories.json';
-import { stats, featuredCategories } from '@/src/data/homeData';
+import { stats, featuredCategories, trendingPosts, featuredJobs } from '@/src/data/homeData';
 import {
   AcademicCapIcon,
   BriefcaseIcon,
@@ -9,7 +9,13 @@ import {
   DeviceTabletIcon,
   BookOpenIcon,
   GlobeAltIcon,
+  NewspaperIcon,
 } from '@heroicons/react/24/outline';
+
+export const metadata = {
+  title: 'Scholars Space | Your Hub for Digital, Tech & Career Growth',
+  description: 'Discover resources, master new digital skills, and accelerate your academic and professional journey with curated content and opportunities.',
+};
 
 const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = {
   'academic-cap': AcademicCapIcon,
@@ -18,6 +24,7 @@ const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = 
   'device-mobile': DeviceTabletIcon,
   'book-open': BookOpenIcon,
   'globe': GlobeAltIcon,
+  'newspaper': NewspaperIcon,
 };
 
 export default function HomePage() {
@@ -34,7 +41,7 @@ export default function HomePage() {
               <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                 Your Space to{' '}
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                  Learn, Create,
+                  Build, Grow,
                 </span>{' '}
                 and{' '}
                 <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
@@ -42,20 +49,20 @@ export default function HomePage() {
                 </span>
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                Discover scholarships, master new skills, and accelerate your academic and professional journey with curated resources designed for success.
+                Discover digital skills, master new technologies, and accelerate your academic and professional journey with curated resources designed for success.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <Link
-                  href="/scholarships"
+                  href="/coding-courses"
                   className="px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-semibold rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-200 transform hover:scale-105 shadow-lg text-center"
                 >
-                  Explore Scholarships
+                  Browse Courses
                 </Link>
                 <Link
-                  href="/coding-courses"
+                  href="/digital-skills"
                   className="px-6 sm:px-8 py-3 sm:py-4 border-2 border-blue-500 text-blue-500 font-semibold rounded-xl hover:bg-blue-500 hover:text-white transition-all duration-200 text-center"
                 >
-                  Browse Courses
+                  Explore Digital Skills
                 </Link>
               </div>
             </div>
@@ -83,7 +90,7 @@ export default function HomePage() {
       {/* Stats Section */}
       <section className="py-12 sm:py-16 lg:py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-6 sm:gap-8">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-8 sm:gap-12">
             {stats.map((stat, index) => {
               const IconComponent = iconMap[stat.icon];
               return (
@@ -112,7 +119,7 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-12">
             {featuredCats.map((category) => (
               <Link key={category.slug} href={`/${category.slug}`} className="group">
                 <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 p-6 sm:p-8 h-full transform group-hover:-translate-y-2 border border-gray-100">
@@ -136,6 +143,88 @@ export default function HomePage() {
                   </div>
                 </div>
               </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Trending Posts */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">Trending Blog Posts</h2>
+            <Link href="/blog-posts" className="text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200">
+              View All →
+            </Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {trendingPosts.map((post) => (
+              <Link key={post.slug} href={`/blog-posts/${post.slug}`} className="group">
+                <div className="bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 transform group-hover:-translate-y-2 border border-gray-100">
+                  {post.image && (
+                    <div className="relative h-48 rounded-t-2xl overflow-hidden">
+                      <Image
+                        src={post.image}
+                        alt={post.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      />
+                    </div>
+                  )}
+                  <div className="p-6 sm:p-8">
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-200">{post.title}</h3>
+                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">{post.excerpt}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Jobs */}
+      <section className="py-16 sm:py-20 lg:py-24 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-12 sm:mb-16">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">Featured Job Opportunities</h2>
+            <Link href="/job-board" className="text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200">
+              View All →
+            </Link>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {featuredJobs.map((job) => (
+              <div key={job.id} className="bg-white rounded-2xl shadow-md p-6 sm:p-8 hover:shadow-xl transition-all duration-300 h-full transform hover:-translate-y-2">
+                <div className="flex items-start mb-4">
+                  {job.companyLogo && (
+                    <Image
+                      src={job.companyLogo}
+                      alt={`${job.company} logo`}
+                      width={48}
+                      height={48}
+                      className="rounded-full mr-4"
+                    />
+                  )}
+                  <div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-1">{job.title}</h3>
+                    <p className="text-gray-600 text-sm">{job.company}</p>
+                  </div>
+                </div>
+                <p className="text-gray-700 mb-4">{job.location}</p>
+                <div className="flex flex-wrap gap-2 text-xs">
+                  {job.tags.map((tag, index) => (
+                    <span key={index} className="bg-gray-100 text-gray-700 rounded-full px-3 py-1 font-medium">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <Link
+                  href={job.link}
+                  className="mt-6 inline-block text-blue-600 hover:text-blue-700 font-semibold transition-colors"
+                >
+                  Apply Now →
+                </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -169,3 +258,4 @@ export default function HomePage() {
     </div>
   );
 }
+

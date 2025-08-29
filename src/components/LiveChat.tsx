@@ -1,155 +1,29 @@
-
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
-
-interface Message {
-  id: number;
-  text: string;
-  sender: string;
-  timestamp: string;
-  isUser: boolean;
-}
+import { useState, useEffect } from 'react';
+import { useChat } from '@/src/hooks/useChat';
 
 export default function LiveChat() {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [inputMessage, setInputMessage] = useState('');
-  const [isConnected, setIsConnected] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isTyping, setIsTyping] = useState(false);
-  const ws = useRef<WebSocket | null>(null);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
-
-  const connectWebSocket = () => {
-    try {
-      // Use the chat server port from server/chat-server.js
-      const wsUrl = `ws://${window.location.hostname}:8080`;
-      ws.current = new WebSocket(wsUrl);
-      
-      ws.current.onopen = () => {
-        setIsConnected(true);
-        console.log('Connected to chat server');
-      };
-
-      ws.current.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          
-          if (data.type === 'message') {
-            setMessages(prev => [...prev, {
-              id: Date.now(),
-              text: data.message,
-              sender: data.sender || 'Support',
-              timestamp: new Date().toLocaleTimeString(),
-              isUser: false
-            }]);
-          } else if (data.type === 'typing') {
-            setIsTyping(data.isTyping);
-          }
-        } catch (error) {
-          console.error('Error parsing WebSocket message:', error);
-        }
-      };
-
-      ws.current.onclose = () => {
-        setIsConnected(false);
-        console.log('Disconnected from chat server');
-      };
-
-      ws.current.onerror = (error) => {
-        console.error('WebSocket error:', error);
-        setIsConnected(false);
-        // Fallback to mock chat if WebSocket fails
-        initializeMockChat();
-      };
-    } catch (error) {
-      console.error('Failed to connect to WebSocket:', error);
-      initializeMockChat();
-    }
-  };
-
-  const initializeMockChat = () => {
-    setIsConnected(true);
-    setMessages([{
-      id: 1,
-      text: "Hi! I'm here to help you navigate Scholars Space. How can I assist you today?",
-      sender: 'Support Bot',
-      timestamp: new Date().toLocaleTimeString(),
-      isUser: false
-    }]);
-  };
-
-  const sendMessage = () => {
-    if (!inputMessage.trim()) return;
-
-    const message: Message = {
-      id: Date.now(),
-      text: inputMessage,
-      sender: 'You',
-      timestamp: new Date().toLocaleTimeString(),
-      isUser: true
-    };
-
-    setMessages(prev => [...prev, message]);
-
-    if (ws.current && ws.current.readyState === WebSocket.OPEN) {
-      const wsMessage = {
-        type: 'message',
-        message: inputMessage,
-        sender: 'User',
-        timestamp: new Date().toISOString()
-      };
-      ws.current.send(JSON.stringify(wsMessage));
-    } else {
-      // Mock response for fallback
-      setTimeout(() => {
-        const responses = [
-          "Thanks for your message! Our team will get back to you shortly.",
-          "I understand your concern. Let me assist you with that.",
-          "That's a great question! Here's what I can tell you...",
-          "I'll need a moment to look that up for you.",
-          "Is there anything specific you'd like to know about our services?"
-        ];
-        const randomResponse = responses[Math.floor(Math.random() * responses.length)];
-        
-        setMessages(prev => [...prev, {
-          id: Date.now(),
-          text: randomResponse,
-          sender: 'Support Bot',
-          timestamp: new Date().toLocaleTimeString(),
-          isUser: false
-        }]);
-      }, 1000);
-    }
-
-    setInputMessage('');
-  };
-
-  const handleKeyPress = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter') {
-      sendMessage();
-    }
-  };
+  const { 
+    messages,
+    inputMessage,
+    setInputMessage,
+    isConnected,
+    connectionStatus,
+    isTyping,
+    isOnCooldown,
+    sendMessage,
+    handleKeyPress,
+    messagesEndRef,
+    connectWebSocket
+  } = useChat();
 
   useEffect(() => {
-    if (isOpen && !isConnected) {
+    if (isOpen && !isConnected && connectionStatus !== 'failed') {
       connectWebSocket();
     }
-
-    return () => {
-      if (ws.current) {
-        ws.current.close();
-      }
-    };
-  }, [isOpen]);
+  }, [isOpen, isConnected, connectionStatus, connectWebSocket]);
 
   return (
     <div className="fixed bottom-4 right-4 z-50">
@@ -167,8 +41,7 @@ export default function LiveChat() {
       )}
 
       {/* Chat Window */}
-      {isOpen && (
-        <div className="bg-white rounded-lg shadow-xl w-80 h-96 flex flex-col">
+      <div className={`bg-white rounded-lg shadow-xl w-full sm:w-80 h-96 flex flex-col ${isOpen ? 'block' : 'hidden'}`}>
           {/* Header */}
           <div className="bg-blue-600 text-white p-4 rounded-t-lg flex justify-between items-center">
             <div className="flex items-center space-x-2">
@@ -185,21 +58,51 @@ export default function LiveChat() {
               </svg>
             </button>
           </div>
+          
+          {connectionStatus === 'failed' && (
+            <div className="text-red-600 text-sm p-2 text-center bg-red-50">
+              Unable to connect to live chat. You're using a mock assistant.
+            </div>
+          )}
 
           {/* Messages */}
-          <div className="flex-1 p-4 overflow-y-auto space-y-3">            
-            {messages.map((message) => (
-              <div key={message.id} className={`flex ${message.isUser ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-xs px-3 py-2 rounded-lg ${
-                  message.isUser 
-                    ? 'bg-blue-600 text-white' 
-                    : 'bg-gray-100 text-gray-800'
-                }`}>
-                  <p className="text-sm">{message.text}</p>
-                  <p className="text-xs opacity-70 mt-1">{message.timestamp}</p>
+          <div className="flex-1 p-4 overflow-y-auto space-y-3" role="log">            
+            {messages.map((message, index) => {
+              const prevMessage = messages[index - 1];
+              const showAvatar = !prevMessage || prevMessage.isUser !== message.isUser;
+              
+              return (
+                <div key={message.id} className={`flex ${message.isUser ? 'justify-end' : 'justify-start'} items-start`}>
+                  {/* Support Avatar (only for support messages) */}
+                  {!message.isUser && showAvatar && (
+                    <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm mr-2 flex-shrink-0">
+                      SS
+                    </div>
+                  )}
+
+                  <div className={`flex flex-col max-w-[75%] ${message.isUser ? 'items-end' : 'items-start'}`}>
+                    <div className={`px-3 py-2 rounded-lg ${
+                      message.isUser
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-gray-100 text-gray-800'
+                    }`}>
+                      <p className="text-sm">{message.text}</p>
+                    </div>
+                    {/* Timestamp is conditionally rendered to avoid visual noise */}
+                    {showAvatar && (
+                        <p className="text-xs opacity-70 mt-1 text-gray-500">{message.timestamp}</p>
+                    )}
+                  </div>
+                  
+                  {/* User Avatar (only for user messages) */}
+                  {message.isUser && showAvatar && (
+                    <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-gray-600 font-bold text-sm ml-2 flex-shrink-0">
+                      Me
+                    </div>
+                  )}
                 </div>
-              </div>
-            ))}
+              );
+            })}
             
             {isTyping && (
               <div className="flex justify-start">
@@ -224,13 +127,13 @@ export default function LiveChat() {
                 value={inputMessage}
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyPress={handleKeyPress}
-                placeholder={isConnected ? "Type a message..." : "Connecting..."}
-                disabled={!isConnected}
+                placeholder={isConnected ? (isOnCooldown ? "Sending..." : "Type a message...") : connectionStatus === 'failed' ? "Failed to connect. Using a mock chat." : "Connecting..."}
+                disabled={!isConnected || isOnCooldown}
                 className="flex-1 px-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:bg-gray-100 text-sm"
               />
               <button
                 onClick={sendMessage}
-                disabled={!isConnected || !inputMessage.trim()}
+                disabled={!isConnected || !inputMessage.trim() || isOnCooldown}
                 className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 disabled:bg-gray-300 transition-colors"
                 aria-label="Send message"
               >
@@ -241,7 +144,6 @@ export default function LiveChat() {
             </div>
           </div>
         </div>
-      )}
     </div>
   );
 }
