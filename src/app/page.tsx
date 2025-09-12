@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import categories from '../../cms/categories.json';
+import { promises as fs } from 'fs';
+import path from 'path';
+import Header from '@/src/components/Header';
 import { stats, featuredCategories, trendingPosts, featuredJobs } from '@/src/data/homeData';
 import {
   AcademicCapIcon,
@@ -12,8 +14,16 @@ import {
   NewspaperIcon,
 } from '@heroicons/react/24/outline';
 
+// This function now runs on the server to fetch your categories
+async function getCategories() {
+  const filePath = path.join(process.cwd(), 'cms', 'categories.json');
+  const fileContents = await fs.readFile(filePath, 'utf8');
+  return JSON.parse(fileContents);
+}
+
+// Metadata for the page, updated with the new brand name
 export const metadata = {
-  title: 'Scholars Space | Your Hub for Digital, Tech & Career Growth',
+  title: 'uSpace | Your Hub for Digital, Tech & Career Growth',
   description: 'Discover resources, master new digital skills, and accelerate your academic and professional journey with curated content and opportunities.',
 };
 
@@ -27,12 +37,15 @@ const iconMap: { [key: string]: React.ComponentType<{ className?: string }> } = 
   'newspaper': NewspaperIcon,
 };
 
-export default function HomePage() {
+// This is now a server component, indicated by the 'async' keyword
+export default async function HomePage() {
+  const categories = await getCategories();
   const featuredCats = categories.filter(cat => cat.featured);
-  const mainNavCategories = categories.filter(cat => cat.navGroup === 'main');
 
   return (
     <div className="min-h-screen">
+      {/* The Header component is now included and receives the categories data as a prop */}
+      <Header categories={categories} />
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-16 sm:py-20 lg:py-32">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -258,4 +271,3 @@ export default function HomePage() {
     </div>
   );
 }
-
