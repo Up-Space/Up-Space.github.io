@@ -86,10 +86,12 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string"}
-      - {label: "Category", name: "category", widget: "select", options: ["Education", "Technology", "Career", "Personal Development"]}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Reading Time", name: "reading_time", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
 
   - name: "career-advancement"
     label: "Career Advancement"
@@ -100,8 +102,14 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", required: false}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Level", name: "level", widget: "select", options: ["Beginner", "Intermediate", "Advanced"], required: false}
+      - {label: "Duration", name: "duration", widget: "string", required: false}
+      - {label: "Prerequisites", name: "prerequisites", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "scholarships"
     label: "Scholarships"
@@ -110,11 +118,17 @@ collections:
     slug: "{{year}}/{{month}}/{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
-      - {label: "Amount", name: "amount", widget: "string"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Deadline", name: "deadline", widget: "datetime"}
-      - {label: "Eligibility", name: "eligibility", widget: "text"}
-      - {label: "Description", name: "description", widget: "markdown"}
+      - {label: "Eligibility", name: "eligibility", widget: "markdown"}
+      - {label: "Amount", name: "amount", widget: "string"}
       - {label: "Application Link", name: "application_link", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
+      - {label: "Cover Image", name: "cover_image", widget: "image", required: false, media_folder: "public/images/categories", public_folder: "/images/categories"}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "coding-courses"
     label: "Coding Courses"
@@ -123,12 +137,19 @@ collections:
     slug: "{{year}}/{{month}}/{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
       - {label: "Level", name: "level", widget: "select", options: ["Beginner", "Intermediate", "Advanced"]}
       - {label: "Duration", name: "duration", widget: "string"}
+      - {label: "Prerequisites", name: "prerequisites", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
       - {label: "Price", name: "price", widget: "string"}
-      - {label: "Description", name: "description", widget: "markdown"}
       - {label: "Skills", name: "skills", widget: "list"}
       - {label: "Course Image", name: "course_image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
+      
 
   - name: "personal-development"
     label: "Personal Development"
@@ -139,8 +160,14 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Level", name: "level", widget: "select", options: ["Beginner", "Intermediate", "Advanced"], required: false}
+      - {label: "Duration", name: "duration", widget: "string", required: false}
+      - {label: "Prerequisites", name: "prerequisites", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "job-board"
     label: "Job Board"
@@ -167,8 +194,14 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Level", name: "level", widget: "select", options: ["Beginner", "Intermediate", "Advanced"], required: false}
+      - {label: "Duration", name: "duration", widget: "string", required: false}
+      - {label: "Prerequisites", name: "prerequisites", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "creative-skills"
     label: "Creative Skills"
@@ -179,8 +212,14 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Level", name: "level", widget: "select", options: ["Beginner", "Intermediate", "Advanced"], required: false}
+      - {label: "Duration", name: "duration", widget: "string", required: false}
+      - {label: "Prerequisites", name: "prerequisites", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "digital-skills"
     label: "Digital Skills"
@@ -191,8 +230,14 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Level", name: "level", widget: "select", options: ["Beginner", "Intermediate", "Advanced"], required: false}
+      - {label: "Duration", name: "duration", widget: "string", required: false}
+      - {label: "Prerequisites", name: "prerequisites", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "education"
     label: "Education"
@@ -203,8 +248,14 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Level", name: "level", widget: "select", options: ["Beginner", "Intermediate", "Advanced"], required: false}
+      - {label: "Duration", name: "duration", widget: "string", required: false}
+      - {label: "Prerequisites", name: "prerequisites", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "entrepreneurship"
     label: "Entrepreneurship"
@@ -215,8 +266,14 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Level", name: "level", widget: "select", options: ["Beginner", "Intermediate", "Advanced"], required: false}
+      - {label: "Duration", name: "duration", widget: "string", required: false}
+      - {label: "Prerequisites", name: "prerequisites", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "financial-aid"
     label: "Financial Aid"
@@ -227,8 +284,14 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Level", name: "level", widget: "select", options: ["Beginner", "Intermediate", "Advanced"], required: false}
+      - {label: "Duration", name: "duration", widget: "string", required: false}
+      - {label: "Prerequisites", name: "prerequisites", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "learning-resources"
     label: "Learning Resources"
@@ -239,8 +302,14 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Level", name: "level", widget: "select", options: ["Beginner", "Intermediate", "Advanced"], required: false}
+      - {label: "Duration", name: "duration", widget: "string", required: false}
+      - {label: "Prerequisites", name: "prerequisites", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}
 
   - name: "lifestyle"
     label: "Lifestyle"
@@ -251,5 +320,11 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Description", name: "description", widget: "string"}
-      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Author", name: "author", widget: "string", required: false}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Level", name: "level", widget: "select", options: ["Beginner", "Intermediate", "Advanced"], required: false}
+      - {label: "Duration", name: "duration", widget: "string", required: false}
+      - {label: "Prerequisites", name: "prerequisites", widget: "string", required: false}
+      - {label: "Featured", name: "featured", widget: "boolean", default: false, required: false}
       - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+      - {label: "Body", name: "body", widget: "markdown"}

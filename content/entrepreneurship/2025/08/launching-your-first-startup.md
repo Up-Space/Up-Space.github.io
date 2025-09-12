@@ -3,13 +3,12 @@ title: Launching Your First Startup
 description: A beginner-friendly roadmap to turning your idea into a viable business.  
 author: Quadri Maruf (Sophist)  
 date: 2025-11-12  
-category: entrepreneurship  
 tags: [startup, business, entrepreneurship, innovation]  
 level: Beginner  
 duration: 11 min read  
 prerequisites: Passion and a rough business idea  
 featured: true  
-cover_image: "entrepreneurship.jpg"  
+featured_image: "entrepreneurship.jpg"  
 ---
 
 # Launching Your First Startup

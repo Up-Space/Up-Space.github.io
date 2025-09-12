@@ -3,13 +3,12 @@ title: Minimalist Living for Urban Creatives
 description: Discover how to simplify your space, schedule, and mindset to unlock more creativity and peace.  
 author: Quadri Maruf (Sophist)  
 date: 2025-08-25  
-category: lifestyle  
 tags: [minimalism, creativity, urban-life, intentional-living]  
 level: Beginner  
 duration: 10 min read  
 prerequisites: Willingness to declutter and reflect  
 featured: true  
-cover_image: "lifestyle.jpg"  
+featured_image: "lifestyle.jpg"  
 ---
 
 # Minimalist Living for Urban Creatives

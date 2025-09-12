@@ -3,13 +3,12 @@ title: Essential Digital Skills for Today
 description: A practical guide to mastering the digital tools and mindsets needed in the modern world.  
 author: Quadri Maruf (Sophist)  
 date: 2026-01-15  
-category: digital-skills  
 tags: [technology, digital-literacy, productivity, online-tools]  
 level: Beginner  
 duration: 10 min read  
 prerequisites: None  
 featured: true  
-cover_image: "digital-skills.jpg"  
+featured_image: "digital-skills.jpg"  
 ---
 
 # Essential Digital Skills for Today

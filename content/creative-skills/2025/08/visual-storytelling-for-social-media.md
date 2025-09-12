@@ -3,13 +3,12 @@ title: Visual Storytelling for Social Media
 description: Learn how to craft compelling visual narratives that captivate audiences across platforms.  
 author: Quadri Maruf (Sophist)  
 date: 2025-08-25  
-category: creative-skills  
 tags: [storytelling, design, social-media, branding]  
 level: Intermediate  
 duration: 3 weeks  
 prerequisites: Basic design tools (Canva, Photoshop, or Figma)  
 featured: true  
-cover_image: "creative-skills.jpg"  
+featured_image: "creative-skills.jpg"  
 ---
 
 # Visual Storytelling for Social Media

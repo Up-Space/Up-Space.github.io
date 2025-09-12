@@ -3,7 +3,6 @@ title: "Mastercard Foundation Scholarship 2025"
 description: "A fully funded opportunity for African students to pursue undergraduate and graduate studies at top global universities."  
 author: Quadri Maruf (Sophist)  
 date: 2025-09-01  
-category: scholarships  
 tags: [funding, education, Africa, opportunity, undergraduate, graduate]  
 deadline: 2025-10-15  
 eligibility: "African students applying for undergraduate or graduate programs in partner institutions."  

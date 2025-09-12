@@ -3,13 +3,12 @@ title: Curating Your Learning Journey
 description: A guide to discovering, organizing, and maximizing free and paid learning resources across the web—including Scholars Space.  
 author: Quadri Maruf (Sophist)  
 date: 2026-02-10  
-category: learning-resources  
 tags: [online-learning, self-education, study-tools, growth]  
 level: Beginner  
 duration: 10 min read  
 prerequisites: None  
 featured: true  
-cover_image: "learning-resources.jpg"  
+featured_image: "learning-resources.jpg" 
 ---
 
 # Curating Your Learning Journey

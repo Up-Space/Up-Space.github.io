@@ -3,13 +3,12 @@ title: Mastering Python for Beginners
 description: A hands-on introduction to Python programming designed for absolute beginners.  
 author: Quadri Maruf (Sophist)
 date: 2025-08-25  
-category: coding-courses  
 tags: [python, programming, beginner, coding]  
 level: Beginner  
 duration: 4 weeks  
 prerequisites: None  
 featured: true  
-cover_image: "coding-courses.jpg"  
+course_image: "coding-courses.jpg"  
 ---
 
 # Mastering Python for Beginners

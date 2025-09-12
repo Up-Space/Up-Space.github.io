@@ -3,13 +3,12 @@ title: How to Apply for Educational Grants
 description: A step-by-step guide to finding and applying for grants that can fund your education.  
 author: Quadri Maruf (Sophist)  
 date: 2025-08-25  
-category: financial-aid  
 tags: [grants, education, funding, financial-support]  
 level: Beginner  
 duration: 10 min read  
 prerequisites: None  
 featured: true  
-cover_image: "financial-aid.jpg"  
+featured_image: "financial-aid.jpg"  
 ---
 
 # How to Apply for Educational Grants

@@ -1,15 +1,14 @@
 ---
-title: Building a Personal Brand  
-description: Learn how to craft a personal brand that opens doors and builds trust in your industry.  
-author: Quadri Maruf (Sophist)  
-date: 2025-10-05  
-category: career-advancement  
-tags: [branding, career, networking, visibility]  
-level: Intermediate  
-duration: 9 min read  
-prerequisites: Basic social media presence  
-featured: true  
-cover_image: "career-advancement.jpg"  
+title: Building a Personal Brand
+description: Learn how to craft a personal brand that opens doors and builds trust in your industry.
+author: Quadri Maruf (Sophist)
+date: 2025-10-05
+tags: [branding, career, networking, visibility]
+level: Intermediate
+duration: 9 min read
+prerequisites: Basic social media presence
+featured: true
+featured_image: "career-advancement.jpg"
 ---
 
 # Building a Personal Brand

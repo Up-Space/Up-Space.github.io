@@ -3,13 +3,12 @@ title: The Power of Morning Routines
 description: Discover how intentional mornings can transform your mindset, productivity, and long-term growth.  
 author: Quadri Maruf (Sophist)  
 date: 2025-08-25  
-category: personal-development  
 tags: [habits, productivity, mindset, routines]  
 level: Beginner  
 duration: 10 min read  
 prerequisites: None  
 featured: true  
-cover_image: "personal-development.jpg"  
+featured_image: "personal-development.jpg"  
 ---
 
 # The Power of Morning Routines

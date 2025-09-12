@@ -3,13 +3,12 @@ title: Building a Sustainable Self-Care Routine
 description: Learn how to design a personalized self-care system that supports your mental, emotional, and physical well-being.  
 author: Quadri Maruf (Sophist)  
 date: 2025-08-25  
-category: health-wellness  
 tags: [self-care, wellness, mental-health, habits]  
 level: Beginner  
 duration: 2 weeks  
 prerequisites: Willingness to reflect and commit  
 featured: true  
-cover_image: "health-wellness.jpg"  
+featured_image: "health-wellness.jpg"  
 ---
 
 # Building a Sustainable Self-Care Routine

@@ -7,7 +7,7 @@ category: blog-posts
 tags: [migration, identity, diaspora, mental health, Nigeria]  
 featured: true  
 reading_time: 6 min read  
-cover_image: "japa-homecoming.jpg"  
+featured_image: "japa-homecoming.jpg"  
 ---
 
 ## Introduction
