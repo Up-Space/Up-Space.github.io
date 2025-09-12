@@ -1,4 +1,3 @@
-
 [
   {
     "slug": "blog-posts",
@@ -8,7 +7,14 @@
     "coverImage": "/images/categories/blog-posts.jpg",
     "folder": "blog-posts",
     "featured": false,
-    "navGroup": "main"
+    "navGroup": "main",
+    "seoTitle": "Latest Blogs & News - Scholars Space",
+    "seoDescription": "Stay updated with the latest insights, stories, and news from the Scholars Space community.",
+    "keywords": ["blog", "news", "insights", "community", "updates"],
+    "sortBy": "date",
+    "sortOrder": "desc",
+    "featuredPosts": [],
+    "canonicalUrl": "/blog-posts"
   },
   {
     "slug": "career-advancement",
@@ -18,7 +24,14 @@
     "coverImage": "/images/categories/career-advancement.jpg",
     "folder": "career-advancement",
     "featured": true,
-    "navGroup": "main"
+    "navGroup": "main",
+    "seoTitle": "Career Advancement Resources - Scholars Space",
+    "seoDescription": "Discover resources and strategies to advance your career and reach new professional heights.",
+    "keywords": ["career", "advancement", "professional development", "growth", "skills"],
+    "sortBy": "date",
+    "sortOrder": "desc",
+    "featuredPosts": [],
+    "canonicalUrl": "/career-advancement"
   },
   {
     "slug": "coding-courses",
@@ -28,7 +41,14 @@
     "coverImage": "/images/categories/coding-courses.jpg",
     "folder": "coding-courses",
     "featured": true,
-    "navGroup": "main"
+    "navGroup": "main",
+    "seoTitle": "Coding Courses & Tutorials - Scholars Space",
+    "seoDescription": "Master programming with our curated collection of coding courses, tutorials, and bootcamps.",
+    "keywords": ["coding", "programming", "courses", "tutorials", "bootcamps", "development"],
+    "sortBy": "level",
+    "sortOrder": "asc",
+    "featuredPosts": [],
+    "canonicalUrl": "/coding-courses"
   },
   {
     "slug": "creative-skills",
@@ -48,7 +68,14 @@
     "coverImage": "/images/categories/digital-skills.jpg",
     "folder": "digital-skills",
     "featured": true,
-    "navGroup": "main"
+    "navGroup": "main",
+    "seoTitle": "Digital Skills Training - Scholars Space",
+    "seoDescription": "Master essential digital tools and platforms for success in the modern economy.",
+    "keywords": ["digital skills", "technology", "tools", "platforms", "digital economy"],
+    "sortBy": "date",
+    "sortOrder": "desc",
+    "featuredPosts": [],
+    "canonicalUrl": "/digital-skills"
   },
   {
     "slug": "education",
@@ -58,7 +85,14 @@
     "coverImage": "/images/categories/education.jpg",
     "folder": "education",
     "featured": true,
-    "navGroup": "main"
+    "navGroup": "main",
+    "seoTitle": "Education Resources - Scholars Space",
+    "seoDescription": "Explore academic programs, study tips, and learning pathways to enhance your education.",
+    "keywords": ["education", "academic", "study tips", "learning", "programs"],
+    "sortBy": "date",
+    "sortOrder": "desc",
+    "featuredPosts": [],
+    "canonicalUrl": "/education"
   },
   {
     "slug": "entrepreneurship",
@@ -98,7 +132,14 @@
     "coverImage": "/images/categories/job-board.jpg",
     "folder": "job-board",
     "featured": true,
-    "navGroup": "main"
+    "navGroup": "main",
+    "seoTitle": "Job Board - Latest Opportunities - Scholars Space",
+    "seoDescription": "Find the latest job listings and internship opportunities across various industries.",
+    "keywords": ["jobs", "careers", "internships", "employment", "opportunities"],
+    "sortBy": "date",
+    "sortOrder": "desc",
+    "featuredPosts": [],
+    "canonicalUrl": "/job-board"
   },
   {
     "slug": "learning-resources",
@@ -128,7 +169,14 @@
     "coverImage": "/images/categories/personal-development.jpg",
     "folder": "personal-development",
     "featured": true,
-    "navGroup": "dropdown"
+    "navGroup": "dropdown",
+    "seoTitle": "Personal Development Resources - Scholars Space",
+    "seoDescription": "Transform your mindset and build better habits with our personal development resources.",
+    "keywords": ["personal development", "mindset", "habits", "self-improvement", "growth"],
+    "sortBy": "date",
+    "sortOrder": "desc",
+    "featuredPosts": [],
+    "canonicalUrl": "/personal-development"
   },
   {
     "slug": "scholarships",
@@ -138,6 +186,13 @@
     "coverImage": "/images/categories/scholarships.jpg",
     "folder": "scholarships",
     "featured": true,
-    "navGroup": "main"
+    "navGroup": "main",
+    "seoTitle": "Scholarships & Educational Funding - Scholars Space",
+    "seoDescription": "Find scholarships and funding opportunities to support your educational journey.",
+    "keywords": ["scholarships", "funding", "education", "grants", "financial aid"],
+    "sortBy": "deadline",
+    "sortOrder": "asc",
+    "featuredPosts": [],
+    "canonicalUrl": "/scholarships"
   }
 ]

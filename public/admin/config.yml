@@ -20,9 +20,20 @@ collections:
             {label: "Title", name: "title", widget: "string"},
             {label: "Slug", name: "slug", widget: "string"},
             {label: "Icon", name: "icon", widget: "image", required: false, media_folder: "public/icons", public_folder: "/icons"},
+            {label: "Cover Image", name: "coverImage", widget: "image", required: false, media_folder: "public/images/categories", public_folder: "/images/categories"},
             {label: "Description", name: "description", widget: "string"},
+            {label: "Category Introduction", name: "introduction", widget: "markdown", required: false},
             {label: "Featured on Homepage", name: "featured", widget: "boolean", default: false},
-            {label: "Category Introduction", name: "introduction", widget: "markdown", required: false}
+            {label: "Navigation Group", name: "navGroup", widget: "select", options: ["main", "dropdown"], default: "main"},
+            {label: "SEO Title", name: "seoTitle", widget: "string", required: false},
+            {label: "SEO Description", name: "seoDescription", widget: "text", required: false},
+            {label: "Keywords", name: "keywords", widget: "list", required: false},
+            {label: "Sort By", name: "sortBy", widget: "select", options: ["date", "title", "level", "deadline"], default: "date"},
+            {label: "Sort Order", name: "sortOrder", widget: "select", options: ["asc", "desc"], default: "desc"},
+            {label: "Canonical URL", name: "canonicalUrl", widget: "string", required: false},
+            {label: "Featured Posts", name: "featuredPosts", widget: "list", fields: [
+              {label: "Post Slug", name: "slug", widget: "string"}
+            ]}
           ]
         }
   
@@ -39,6 +50,13 @@ collections:
           - {label: "Value", name: "value", widget: "string"}
           - {label: "Title", name: "title", widget: "string"}
           - {label: "Icon", name: "icon", widget: "string"}
+      - label: "Featured Categories"
+        name: "featured_categories"
+        widget: "list"
+        fields:
+          - {label: "Category Title", name: "title", widget: "string"}
+          - {label: "Category Description", name: "description", widget: "string"}
+          - {label: "Category Icon", name: "icon", widget: "image", required: false}
       - label: "Trending Posts"
         name: "trending_posts"
         widget: "list"
@@ -77,7 +95,7 @@ collections:
     label: "Career Advancement"
     folder: "content/career-advancement"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}/{{month}}/{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
@@ -89,7 +107,7 @@ collections:
     label: "Scholarships"
     folder: "content/scholarships"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}/{{month}}/{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Amount", name: "amount", widget: "string"}
@@ -102,7 +120,7 @@ collections:
     label: "Coding Courses"
     folder: "content/coding-courses"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}/{{month}}/{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Level", name: "level", widget: "select", options: ["Beginner", "Intermediate", "Advanced"]}
@@ -116,7 +134,7 @@ collections:
     label: "Personal Development"
     folder: "content/personal-development"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}/{{month}}/{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
@@ -128,7 +146,7 @@ collections:
     label: "Job Board"
     folder: "content/job-board"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}/{{month}}/{{slug}}"
     fields:
       - {label: "Job Title", name: "title", widget: "string"}
       - {label: "Company", name: "company", widget: "string"}
@@ -144,7 +162,7 @@ collections:
     label: "Health & Wellness"
     folder: "content/health-wellness"
     create: true
-    slug: "{{slug}}"
+    slug: "{{year}}/{{month}}/{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
