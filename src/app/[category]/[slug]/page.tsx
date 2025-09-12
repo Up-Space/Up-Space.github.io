@@ -1,4 +1,3 @@
-
 import { notFound } from "next/navigation";
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import categories from "../../../../cms/categories.json";
@@ -15,10 +14,8 @@ interface Params {
 export default async function PostPage({ params }: Params) {
   const { category, slug } = params;
 
-  const matchedCategory = categories.find((cat) => cat.slug === category);
-  if (!matchedCategory) return notFound();
-
-  const post = await getContentBySlug(matchedCategory.folder, slug);
+  // The slug parameter already gives us the folder we need.
+  const post = await getContentBySlug(category, slug);
   if (!post) return notFound();
 
   return (

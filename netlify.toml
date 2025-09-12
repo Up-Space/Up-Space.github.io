@@ -6,10 +6,10 @@
 [build.environment]
   NODE_VERSION = "18"
 
+[context.production.environment]
+  NEXT_PUBLIC_SITE_URL = "https://your-site-name.netlify.app"
+
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
-
-[template.environment]
-  NEXT_PUBLIC_SITE_URL = "https://your-site-name.netlify.app" 
