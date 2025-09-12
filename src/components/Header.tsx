@@ -3,15 +3,26 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import categories from '../../cms/categories.json';
+import { useRouter } from 'next/navigation';
 
-export default function Header() {
+export default function Header({ categories }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
+  const router = useRouter();
 
-  // Filter categories by navGroup
+  // Filter categories by navGroup, using the categories passed as a prop
   const mainMenuItems = categories.filter((cat) => cat.navGroup === 'main');
   const moreTopics = categories.filter((cat) => cat.navGroup === 'dropdown');
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const searchTerm = e.target.search.value.trim();
+    if (searchTerm) {
+      // Use the Next.js router for client-side navigation
+      router.push(`/search?q=${encodeURIComponent(searchTerm)}`);
+      setIsMenuOpen(false);
+    }
+  };
 
   return (
     <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
@@ -22,13 +33,13 @@ export default function Header() {
             <div className="flex flex-col items-center">
               <Image
                 src="/logo.png"
-                alt="Scholars Space Logo"
+                alt="uSpace Logo"
                 width={200}
                 height={50}
                 className="group-hover:scale-105 transition-transform"
                 style={{ width: 'auto', height: 'auto', maxWidth: '200px', maxHeight: '50px' }}
               />
-              <p className="text-xs text-gray-600 mt-1 whitespace-nowrap font-medium">Your Space to Learn, Create, and Lead</p>
+              <p className="text-xs text-gray-600 mt-1 whitespace-nowrap font-medium">uSpace: Your Hub for Digital, Tech & Career Growth</p>
             </div>
           </Link>
 
@@ -84,16 +95,7 @@ export default function Header() {
 
           {/* Search and Dashboard */}
           <div className="hidden lg:flex items-center space-x-4">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const searchTerm = e.target.search.value.trim();
-                if (searchTerm) {
-                  window.location.href = `/search?q=${encodeURIComponent(searchTerm)}`;
-                }
-              }}
-              className="relative"
-            >
+            <form onSubmit={handleSearchSubmit} className="relative">
               <input
                 name="search"
                 type="text"
@@ -134,17 +136,7 @@ export default function Header() {
         {isMenuOpen && (
           <div className="lg:hidden py-4 border-t border-gray-100">
             <div className="space-y-2">
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const searchTerm = e.target.search.value.trim();
-                  if (searchTerm) {
-                    window.location.href = `/search?q=${encodeURIComponent(searchTerm)}`;
-                    setIsMenuOpen(false);
-                  }
-                }}
-                className="relative mb-4"
-              >
+              <form onSubmit={handleSearchSubmit} className="relative mb-4">
                 <input
                   name="search"
                   type="text"
@@ -158,7 +150,7 @@ export default function Header() {
                 </button>
               </form>
 
-              {categories.map((item) => (
+              {[...mainMenuItems, ...moreTopics].map((item) => (
                 <Link
                   key={item.slug}
                   href={`/${item.slug}`}
