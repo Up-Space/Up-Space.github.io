@@ -134,7 +134,7 @@ export const useChat = () => {
     if (!existingMessages) {
       setMessages([{
         id: 1,
-        text: "Hi! I'm here to help you navigate Scholars Space. How can I assist you today?",
+        text: "Hi! I'm here to help you navigate QSpace. How can I assist you today?",
         sender: 'Support Bot',
         timestamp: formatTime(new Date()),
         isUser: false

@@ -1,5 +1,6 @@
-
 import { MetadataRoute } from 'next';
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.qspace.com';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/admin/', '/api/'],
     },
-    sitemap: 'https://scholars-space.replit.app/sitemap.xml',
+    sitemap: `${siteUrl}/sitemap.xml`,
   };
 }

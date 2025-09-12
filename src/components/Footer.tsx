@@ -1,4 +1,3 @@
-
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -12,12 +11,12 @@ export default function Footer() {
             <div className="flex items-center mb-4">
               <Image
                 src="/logo.png"
-                alt="Scholars Space"
+                alt="QSpace"
                 width={40}
                 height={40}
                 className="mr-3"
               />
-              <span className="text-xl font-bold">Scholars Space</span>
+              <span className="text-xl font-bold">QSpace</span>
             </div>
             <p className="text-gray-400 mb-4">
               Your Space to Learn, Create, and Lead. Empowering the next generation 
@@ -96,7 +95,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center">
           <p className="text-gray-400">
-            © 2025 Scholars Space. All rights reserved. Built with ❤️ for the next generation of leaders.
+            © 2025 QSpace. All rights reserved. Built with ❤️ for the next generation of leaders.
           </p>
         </div>
       </div>

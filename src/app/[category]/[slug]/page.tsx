@@ -39,8 +39,8 @@ export default async function PostPage({ params }: Params) {
             {post.frontMatter.date && (
               <span>{new Date(post.frontMatter.date).toLocaleDateString()}</span>
             )}
-            {post.frontMatter.readTime && (
-              <span>{post.frontMatter.readTime} read</span>
+            {(post.frontMatter.duration || post.frontMatter.reading_time) && (
+              <span>{post.frontMatter.duration || post.frontMatter.reading_time} read</span>
             )}
           </div>
 
@@ -59,9 +59,9 @@ export default async function PostPage({ params }: Params) {
         </header>
 
         {/* Cover Image */}
-        {post.frontMatter.cover_image && (
+        {(post.frontMatter.cover_image || post.frontMatter.featured_image) && (
           <img
-            src={post.frontMatter.cover_image}
+            src={post.frontMatter.cover_image || post.frontMatter.featured_image}
             alt={post.frontMatter.title}
             className="w-full h-64 object-cover rounded-lg mb-8"
           />
@@ -89,10 +89,10 @@ export default async function PostPage({ params }: Params) {
         )}
 
         {/* Application Link for Scholarships */}
-        {post.frontMatter.applicationLink && (
+        {post.frontMatter.application_link && (
           <div className="mt-8 p-4 bg-green-50 rounded-lg">
             <a
-              href={post.frontMatter.applicationLink}
+              href={post.frontMatter.application_link}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 transition-colors"
@@ -104,4 +104,61 @@ export default async function PostPage({ params }: Params) {
       </article>
     </main>
   );
+}
+
+export async function generateStaticParams() {
+  const categoriesSlugs = categories.map((cat) => cat.slug);
+  let params: { category: string; slug: string }[] = [];
+
+  for (const categorySlug of categoriesSlugs) {
+    const posts = await getAllPostsInCategory(categorySlug);
+    const categoryParams = posts.map((post) => ({
+      category: categorySlug,
+      slug: post.slug,
+    }));
+    params = params.concat(categoryParams);
+  }
+
+  return params;
+}
+
+export async function generateMetadata({ params }: Params) {
+  const { category, slug } = params;
+  const post = await getContentBySlug(category, slug);
+
+  if (!post) {
+    return {
+      title: "Content Not Found",
+    };
+  }
+
+  // Get canonical URL from categories.json, fall back to default if not found
+  const matchedCategory = categories.find(cat => cat.slug === category);
+  const canonicalUrl = matchedCategory?.canonicalUrl || `/${category}/${slug}`;
+
+  return {
+    title: `${post.frontMatter.title} - QSpace`,
+    description: post.frontMatter.description || "A resource from QSpace",
+    openGraph: {
+      title: `${post.frontMatter.title}`,
+      description: post.frontMatter.description || "A resource from QSpace",
+      type: "article",
+      url: `https://your-website.com${canonicalUrl}`,
+      images: [
+        {
+          url: post.frontMatter.featured_image || post.frontMatter.cover_image,
+          alt: post.frontMatter.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.frontMatter.title}`,
+      description: post.frontMatter.description || "A resource from QSpace",
+      image: post.frontMatter.featured_image || post.frontMatter.cover_image,
+    },
+    alternates: {
+      canonical: canonicalUrl,
+    }
+  };
 }

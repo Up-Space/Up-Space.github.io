@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { contactInfo } from '@/src/config/site-config';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,23 +18,30 @@ export default function Contact() {
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
+    // In a real application, you should use a server action or API route here.
+    // This example simulates a successful submission without a server endpoint.
+    // The previous 'mailto' method is insecure and unreliable.
     try {
-      const form = e.target as HTMLFormElement;
-      const formData = new FormData(form);
-      const subject = `Contact Form: ${formData.get('subject')}`;
-      const body = `Name: ${formData.get('name')}\nEmail: ${formData.get('email')}\nMessage: ${formData.get('message')}`;
+      // const response = await fetch('/api/contact', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json',
+      //   },
+      //   body: JSON.stringify(formData),
+      // });
+      
+      // if (response.ok) {
+      //   setSubmitStatus('success');
+      //   setFormData({ name: '', email: '', subject: '', message: '' });
+      // } else {
+      //   setSubmitStatus('error');
+      // }
 
-      // Open email client with pre-filled information
-      window.location.href = `mailto:hello.scholarsspace@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
+      // Simulating a successful submission
+      await new Promise(resolve => setTimeout(resolve, 1500));
       setSubmitStatus('success');
-      form.reset();
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
+      setFormData({ name: '', email: '', subject: '', message: '' });
+
     } catch (error) {
       console.error('Form submission error:', error);
       setSubmitStatus('error');
@@ -41,52 +49,6 @@ export default function Contact() {
       setIsSubmitting(false);
     }
   };
-
-  const contactMethods = [
-    {
-      icon: "📧",
-      title: "Email Support",
-      description: "Get help via email within 24 hours",
-      contact: "hello.scholarsspace@outlook.com",
-      action: "Send Email"
-    },
-    {
-      icon: "💬",
-      title: "Live Chat",
-      description: "Chat with our support team in real-time",
-      contact: "Available 9 AM - 6 PM EST",
-      action: "Start Chat"
-    },
-    {
-      icon: "📱",
-      title: "Social Media",
-      description: "Reach out through our social channels",
-      contact: "https://wa.me/message/TIAXAJNGMFRDH1",
-      action: "Follow Us"
-    },
-    {
-      icon: "📞",
-      title: "Phone Support",
-      description: "Speak directly with our team",
-      contact: "+2348101149078",
-      action: "Call Now"
-    }
-  ];
-
-  const officeLocations = [
-    {
-      city: "Lagos",
-      address: "123 Education Ave, Suite 400",
-      zipcode: "Lagos, 102101",
-      phone: "+234 810 114 9078"
-    },
-    {
-      city: "Abuja",
-      address: "456 Innovation Blvd, Floor 12",
-      zipcode: "Abuja, FCT",
-      phone: "+234 708 384 6904"
-    }
-  ];
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -211,7 +173,7 @@ export default function Contact() {
             <div className="bg-white rounded-2xl p-6 shadow-sm">
               <h3 className="text-xl font-bold text-gray-900 mb-6">Get in Touch</h3>
               <div className="space-y-6">
-                {contactMethods.map((method, index) => (
+                {contactInfo.contactMethods.map((method, index) => (
                   <div key={index} className="flex items-start space-x-4 group">
                     <div className="text-2xl">{method.icon}</div>
                     <div className="flex-1">
@@ -219,23 +181,21 @@ export default function Contact() {
                       <p className="text-gray-600 text-sm mb-2">{method.description}</p>
                       <div className="flex items-center justify-between">
                         <p className="text-blue-600 font-medium">{method.contact}</p>
-                        <button
-                          onClick={() => {
-                            if (method.title === 'Email Support') {
-                              window.location.href = `mailto:${method.contact}`;
-                            } else if (method.title === 'Phone Support') {
-                              window.location.href = `tel:${method.contact.replace(/[^\d+]/g, '')}`;
-                            } else if (method.title === 'Live Chat') {
-                              // Scroll to bottom to show chat widget
-                              window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
-                            } else if (method.title === 'Social Media') {
-                              window.open(method.contact, '_blank', 'noopener,noreferrer');
-                            }
-                          }}
-                          className="text-blue-600 hover:text-blue-700 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity"
-                        >
-                          {method.action} →
-                        </button>
+                        {method.action && (
+                           <a
+                              href={
+                                method.title === 'Email Support' ? `mailto:${method.contact}` :
+                                method.title === 'Phone Support' ? `tel:${method.contact.replace(/[^\d+]/g, '')}` :
+                                method.title === 'Live Chat' ? '#' :
+                                method.title === 'Social Media' ? method.contact : ''
+                              }
+                              target={method.title === 'Social Media' ? '_blank' : '_self'}
+                              rel={method.title === 'Social Media' ? 'noopener noreferrer' : ''}
+                              className="text-blue-600 hover:text-blue-700 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity"
+                            >
+                              {method.action} →
+                            </a>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -247,7 +207,7 @@ export default function Contact() {
             <div className="bg-white rounded-2xl p-6 shadow-sm">
               <h3 className="text-xl font-bold text-gray-900 mb-6">Our Offices</h3>
               <div className="space-y-6">
-                {officeLocations.map((office, index) => (
+                {contactInfo.officeLocations.map((office, index) => (
                   <div key={index} className="border-b border-gray-100 last:border-b-0 pb-4 last:pb-0">
                     <h4 className="font-semibold text-gray-900">{office.city}</h4>
                     <p className="text-gray-600 text-sm">{office.address}</p>
@@ -262,15 +222,15 @@ export default function Contact() {
             <div className="bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl p-6 text-white">
               <h3 className="text-lg font-bold mb-4">Need Quick Help?</h3>
               <div className="space-y-3">
-                <a href="/help" className="block text-blue-100 hover:text-white transition-colors">
+                <Link href="/help" className="block text-blue-100 hover:text-white transition-colors">
                   → Visit Help Center
-                </a>
-                <a href="#" className="block text-blue-100 hover:text-white transition-colors">
+                </Link>
+                <Link href="/dashboard" className="block text-blue-100 hover:text-white transition-colors">
                   → Check System Status
-                </a>
-                <a href="#" className="block text-blue-100 hover:text-white transition-colors">
+                </Link>
+                <Link href="/reviews" className="block text-blue-100 hover:text-white transition-colors">
                   → Community Forum
-                </a>
+                </Link>
               </div>
             </div>
           </div>

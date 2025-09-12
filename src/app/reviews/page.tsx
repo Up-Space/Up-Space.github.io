@@ -23,7 +23,7 @@ export default function Reviews() {
                 <div className="flex items-center justify-between">
                   <span className="text-sm text-gray-500">Rating: {review.frontMatter.rating || 'N/A'}</span>
                   <Link
-                    href={`/${review.frontMatter.category}/${review.slug}`}
+                    href={`/reviews/${review.slug}`}
                     className="text-blue-600 hover:text-blue-800 font-medium text-sm"
                   >
                     Read Review →

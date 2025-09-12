@@ -16,19 +16,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Scholars Space - Your Space to Learn, Create, and Lead",
+  title: "QSpace - Your Space to Learn, Create, and Lead",
   description: "Discover scholarships, master new skills, and accelerate your academic and professional journey with curated resources designed for success.",
   keywords: ["scholarships", "education", "learning", "career development", "digital skills"],
-  authors: [{ name: "Scholars Space Team" }],
+  authors: [{ name: "QSpace Team" }],
   openGraph: {
-    title: "Scholars Space - Your Space to Learn, Create, and Lead",
+    title: "QSpace - Your Space to Learn, Create, and Lead",
     description: "Discover scholarships, master new skills, and accelerate your academic and professional journey with curated resources designed for success.",
     type: "website",
-    siteName: "Scholars Space",
+    siteName: "QSpace",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Scholars Space - Your Space to Learn, Create, and Lead",
+    title: "QSpace - Your Space to Learn, Create, and Lead",
     description: "Discover scholarships, master new skills, and accelerate your academic and professional journey with curated resources designed for success.",
   },
 };

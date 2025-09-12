@@ -1,7 +1,7 @@
-import { getAllPosts } from '../../lib/markdown';
+import { getAllContent } from '../../lib/markdown';
 import ClientSearchPage from './ClientSearchPage';
 
 export default function SearchPage() {
-  const allContent = getAllPosts(); // Server-side fetch
+  const allContent = getAllContent(''); // Server-side fetch
   return <ClientSearchPage allContent={allContent} />;
 }

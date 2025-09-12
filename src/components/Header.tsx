@@ -33,13 +33,13 @@ export default function Header({ categories }) {
             <div className="flex flex-col items-center">
               <Image
                 src="/logo.png"
-                alt="uSpace Logo"
+                alt="QSpace Logo"
                 width={200}
                 height={50}
                 className="group-hover:scale-105 transition-transform"
                 style={{ width: 'auto', height: 'auto', maxWidth: '200px', maxHeight: '50px' }}
               />
-              <p className="text-xs text-gray-600 mt-1 whitespace-nowrap font-medium">uSpace: Your Hub for Digital, Tech & Career Growth</p>
+              <p className="text-xs text-gray-600 mt-1 whitespace-nowrap font-medium">QSpace: Your Hub for Digital, Tech & Career Growth</p>
             </div>
           </Link>
 

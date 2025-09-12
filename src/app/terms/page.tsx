@@ -1,4 +1,3 @@
-
 export default function Terms() {
   const lastUpdated = "January 15, 2024";
   const effectiveDate = "January 1, 2024";
@@ -6,11 +5,11 @@ export default function Terms() {
   const sections = [
     {
       title: "Acceptance of Terms",
-      content: "By accessing and using Scholars Scribe, you accept and agree to be bound by the terms and provision of this agreement. These Terms of Service apply to all visitors, users, and others who access or use the service."
+      content: "By accessing and using QSpace, you accept and agree to be bound by the terms and provision of this agreement. These Terms of Service apply to all visitors, users, and others who access or use the service."
     },
     {
       title: "Description of Service",
-      content: "Scholars Scribe provides educational resources, scholarship information, career guidance, and learning materials through our web platform. Our service includes articles, courses, job boards, and other educational content designed to support academic and professional development."
+      content: "QSpace provides educational resources, scholarship information, career guidance, and learning materials through our web platform. Our service includes articles, courses, job boards, and other educational content designed to support academic and professional development."
     },
     {
       title: "User Accounts",
@@ -22,7 +21,7 @@ export default function Terms() {
     },
     {
       title: "Content and Intellectual Property",
-      content: "The service and its original content, features, and functionality are and will remain the exclusive property of Scholars Scribe and its licensors. The service is protected by copyright, trademark, and other laws. Our trademarks may not be used without our express written permission."
+      content: "The service and its original content, features, and functionality are and will remain the exclusive property of QSpace and its licensors. The service is protected by copyright, trademark, and other laws. Our trademarks may not be used without our express written permission."
     },
     {
       title: "User-Generated Content",
@@ -42,7 +41,7 @@ export default function Terms() {
     },
     {
       title: "Limitation of Liability",
-      content: "In no event shall Scholars Scribe, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses."
+      content: "In no event shall QSpace, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses."
     },
     {
       title: "Termination",
@@ -73,10 +72,10 @@ export default function Terms() {
 
         {/* Introduction */}
         <div className="bg-white rounded-2xl p-8 shadow-sm mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">Welcome to Scholars Scribe</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">Welcome to QSpace</h2>
           <p className="text-gray-600 leading-relaxed mb-4">
-            These Terms of Service ("Terms") govern your use of our website located at scholarsscribe.com 
-            (the "Service") operated by Scholars Scribe ("us", "we", or "our").
+            These Terms of Service ("Terms") govern your use of our website located at qspace.com 
+            (the "Service") operated by QSpace ("us", "we", or "our").
           </p>
           <p className="text-gray-600 leading-relaxed">
             Please read these Terms of Service carefully before using our Service. By accessing or using our Service, 
@@ -110,10 +109,10 @@ export default function Terms() {
               Contact Us
             </a>
             <a 
-              href="mailto:hello.scholarsspace@outlook.com" 
+              href="mailto:hello.qspace@outlook.com" 
               className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm text-white font-semibold rounded-lg hover:bg-white/20 transition-all duration-200 border border-white/20"
             >
-              hello.scholarsspace@outlook.com
+              hello.qspace@outlook.com
             </a>
           </div>
         </div>

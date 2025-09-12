@@ -2,19 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-
-interface FrontMatter {
-  title: string;
-  description ? : string;
-  date ? : string;
-  [key: string]: any;
-}
-
-interface Post {
-  slug: string;
-  frontMatter: FrontMatter;
-  category: string;
-}
+import { Post } from '../../../cms/types'; // Assuming types.ts defines this interface
+import categories from '../../../cms/categories.json';
 
 export default function ClientSearchPage({ allContent }: { allContent: Post[] }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -55,12 +44,15 @@ export default function ClientSearchPage({ allContent }: { allContent: Post[] })
   const typeColors: Record < string, string > = {
     "blog-posts": "bg-blue-100 text-blue-800",
     "scholarships": "bg-green-100 text-green-800",
-    "job-board": "bg-purple-100 text-purple-800",
     "coding-courses": "bg-orange-100 text-orange-800",
+    "reviews": "bg-purple-100 text-purple-800",
     "personal-development": "bg-yellow-100 text-yellow-800",
-    "health-wellness": "bg-red-100 text-red-800",
-    "career-advancement": "bg-teal-100 text-teal-800"
   };
+
+  const getCategoryTitle = (slug: string) => {
+    const category = categories.find(cat => cat.slug === slug);
+    return category ? category.title : slug;
+  }
   
   return (
     <div className="min-h-screen bg-gray-50 py-12">
@@ -114,8 +106,8 @@ export default function ClientSearchPage({ allContent }: { allContent: Post[] })
                 <div className="flex items-start justify-between mb-3">
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${typeColors[result.category]}`}>
-                        {result.category}
+                      <span className={`px-3 py-1 rounded-full text-sm font-medium ${typeColors[result.category] || 'bg-gray-100 text-gray-800'}`}>
+                        {getCategoryTitle(result.category)}
                       </span>
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2 hover:text-blue-600">

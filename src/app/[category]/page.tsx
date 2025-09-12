@@ -1,4 +1,3 @@
-
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
@@ -32,7 +31,7 @@ export default async function CategoryPage({ params }: Params) {
                   alt={matchedCategory.title}
                   width={40}
                   height={40}
-                  className="w-10 h-10"
+                  className="w-10 h-1-0"
                 />
               </div>
             </div>
@@ -68,10 +67,10 @@ export default async function CategoryPage({ params }: Params) {
                   className="group"
                 >
                   <article className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    {post.frontMatter.cover_image && (
+                    {(post.frontMatter.featured_image || post.frontMatter.cover_image) && (
                       <div className="aspect-video overflow-hidden">
                         <img
-                          src={post.frontMatter.cover_image}
+                          src={post.frontMatter.featured_image || post.frontMatter.cover_image}
                           alt={post.frontMatter.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
@@ -83,10 +82,10 @@ export default async function CategoryPage({ params }: Params) {
                         {post.frontMatter.date && (
                           <span>{new Date(post.frontMatter.date).toLocaleDateString()}</span>
                         )}
-                        {post.frontMatter.duration && (
+                        {(post.frontMatter.duration || post.frontMatter.reading_time) && (
                           <>
                             <span className="mx-2">•</span>
-                            <span>{post.frontMatter.duration}</span>
+                            <span>{post.frontMatter.duration || post.frontMatter.reading_time}</span>
                           </>
                         )}
                       </div>
@@ -154,7 +153,7 @@ export async function generateMetadata({ params }: Params) {
   }
 
   return {
-    title: `${matchedCategory.title} - Scholars Space`,
+    title: `${matchedCategory.title} - QSpace`,
     description: matchedCategory.description,
   };
 }

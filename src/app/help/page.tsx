@@ -1,10 +1,9 @@
-
 export default function HelpCenter() {
   const helpCategories = [
     {
       title: "Getting Started",
       icon: "🚀",
-      description: "Learn the basics of using Scholars Space",
+      description: "Learn the basics of using QSpace",
       articles: [
         "How to create your first account",
         "Navigating the dashboard",
@@ -49,15 +48,15 @@ export default function HelpCenter() {
 
   const faqs = [
     {
-      question: "Is Scholars Space free to use?",
-      answer: "Yes! Scholars Space is completely free to use. We believe in making educational resources accessible to everyone. Some premium features may be introduced in the future, but our core content will always remain free."
+      question: "Is QSpace free to use?",
+      answer: "Yes! QSpace is completely free to use. We believe in making educational resources accessible to everyone. Some premium features may be introduced in the future, but our core content will always remain free."
     },
     {
       question: "How often is new content added?",
       answer: "We add new articles, scholarships, and opportunities daily. Our team of education professionals curates fresh content to ensure you have access to the latest information and opportunities."
     },
     {
-      question: "Can I contribute content to Scholars Space?",
+      question: "Can I contribute content to QSpace?",
       answer: "Absolutely! We welcome contributions from experts, educators, and students. You can submit articles, share scholarship opportunities, or suggest improvements through our contact form."
     },
     {
@@ -86,7 +85,7 @@ export default function HelpCenter() {
           </div>
           <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Help Center</h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Find answers to common questions and learn how to make the most of Scholars Space
+            Find answers to common questions and learn how to make the most of QSpace
           </p>
         </div>
 

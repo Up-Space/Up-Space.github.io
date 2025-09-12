@@ -1,20 +1,31 @@
-
 import Link from 'next/link';
 
-export default function Dashboard() {
-  const userStats = {
-    articlesRead: 12,
-    coursesCompleted: 3,
-    scholarshipsApplied: 5,
-    savedItems: 8
+// Mock data to simulate a fetch from an API
+const getDashboardData = async () => {
+  // In a real application, this would be an API call
+  // const res = await fetch('https://api.qspace.com/dashboard');
+  // const data = await res.json();
+  // return data;
+
+  // Mock data for demonstration
+  return {
+    userStats: {
+      articlesRead: 12,
+      coursesCompleted: 3,
+      scholarshipsApplied: 5,
+      savedItems: 8
+    },
+    recentActivity: [
+      { action: "Read article", item: "Study Tips for Academic Success", date: "2 hours ago" },
+      { action: "Bookmarked", item: "Top Scholarship Opportunities", date: "1 day ago" },
+      { action: "Completed", item: "Resume Building Course", date: "3 days ago" }
+    ],
   };
+};
 
-  const recentActivity = [
-    { action: "Read article", item: "Study Tips for Academic Success", date: "2 hours ago" },
-    { action: "Bookmarked", item: "Merit-Based Scholarship", date: "1 day ago" },
-    { action: "Completed", item: "Resume Building Course", date: "3 days ago" }
-  ];
-
+export default async function Dashboard() {
+  const { userStats, recentActivity } = await getDashboardData();
+  
   return (
     <div className="container mx-auto px-6 py-12">
       <div className="mb-8">

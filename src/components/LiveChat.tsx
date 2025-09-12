@@ -76,7 +76,7 @@ export default function LiveChat() {
                   {/* Support Avatar (only for support messages) */}
                   {!message.isUser && showAvatar && (
                     <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm mr-2 flex-shrink-0">
-                      SS
+                      QS
                     </div>
                   )}
 
