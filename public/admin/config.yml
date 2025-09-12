@@ -1,4 +1,3 @@
-
 backend:
   name: git-gateway
   branch: main
@@ -11,7 +10,7 @@ collections:
     label: "Blog Posts"
     folder: "content/blog-posts"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{year}}/{{month}}/{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
@@ -93,6 +92,102 @@ collections:
     folder: "content/health-wellness"
     create: true
     slug: "{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+
+  - name: "creative-skills"
+    label: "Creative Skills"
+    folder: "content/creative-skills"
+    create: true
+    slug: "{{year}}/{{month}}/{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+
+  - name: "digital-skills"
+    label: "Digital Skills"
+    folder: "content/digital-skills"
+    create: true
+    slug: "{{year}}/{{month}}/{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+
+  - name: "education"
+    label: "Education"
+    folder: "content/education"
+    create: true
+    slug: "{{year}}/{{month}}/{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+
+  - name: "entrepreneurship"
+    label: "Entrepreneurship"
+    folder: "content/entrepreneurship"
+    create: true
+    slug: "{{year}}/{{month}}/{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+
+  - name: "financial-aid"
+    label: "Financial Aid"
+    folder: "content/financial-aid"
+    create: true
+    slug: "{{year}}/{{month}}/{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+
+  - name: "learning-resources"
+    label: "Learning Resources"
+    folder: "content/learning-resources"
+    create: true
+    slug: "{{year}}/{{month}}/{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+
+  - name: "lifestyle"
+    label: "Lifestyle"
+    folder: "content/lifestyle"
+    create: true
+    slug: "{{year}}/{{month}}/{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Description", name: "description", widget: "string"}
+      - {label: "Body", name: "body", widget: "markdown"}
+      - {label: "Featured Image", name: "featured_image", widget: "image", required: false}
+
+  - name: "personal-development"
+    label: "Personal Development"
+    folder: "content/personal-development"
+    create: true
+    slug: "{{year}}/{{month}}/{{slug}}"
     fields:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
