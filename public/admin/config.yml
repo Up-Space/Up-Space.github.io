@@ -6,6 +6,59 @@ media_folder: "public/uploads"
 public_folder: "/uploads"
 
 collections:
+  - name: "categories"
+    label: "Categories"
+    folder: "cms"
+    file: "cms/categories.json"
+    fields:
+      - {
+          label: "Categories",
+          name: "categories",
+          widget: "list",
+          summary: "{{fields.title}}",
+          fields: [
+            {label: "Title", name: "title", widget: "string"},
+            {label: "Slug", name: "slug", widget: "string"},
+            {label: "Icon", name: "icon", widget: "image", required: false, media_folder: "public/icons", public_folder: "/icons"},
+            {label: "Description", name: "description", widget: "string"},
+            {label: "Featured on Homepage", name: "featured", widget: "boolean", default: false},
+            {label: "Category Introduction", name: "introduction", widget: "markdown", required: false}
+          ]
+        }
+  
+  - name: "home-page"
+    label: "Home Page"
+    file: "cms/home.json"
+    fields:
+      - {label: "Hero Title", name: "hero_title", widget: "string"}
+      - {label: "Hero Subtitle", name: "hero_subtitle", widget: "string", required: false}
+      - label: "Stats"
+        name: "stats"
+        widget: "list"
+        fields:
+          - {label: "Value", name: "value", widget: "string"}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Icon", name: "icon", widget: "string"}
+      - label: "Trending Posts"
+        name: "trending_posts"
+        widget: "list"
+        fields:
+          - {label: "Post Title", name: "title", widget: "string"}
+          - {label: "Post Slug", name: "slug", widget: "string", hint: "The slug of the post (e.g., how-to-apply-for-educational-grants)"}
+          - {label: "Post Excerpt", name: "excerpt", widget: "string", required: false}
+          - {label: "Featured Image", name: "image", widget: "image", required: false}
+      - label: "Featured Jobs"
+        name: "featured_jobs"
+        widget: "list"
+        fields:
+          - {label: "Job ID", name: "id", widget: "string"}
+          - {label: "Job Title", name: "title", widget: "string"}
+          - {label: "Company", name: "company", widget: "string"}
+          - {label: "Company Logo", name: "companyLogo", widget: "image", required: false}
+          - {label: "Location", name: "location", widget: "string"}
+          - {label: "Tags", name: "tags", widget: "list", required: false}
+          - {label: "Application Link", name: "link", widget: "string", required: false}
+
   - name: "blog-posts"
     label: "Blog Posts"
     folder: "content/blog-posts"

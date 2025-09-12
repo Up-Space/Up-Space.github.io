@@ -36,32 +36,32 @@ export interface StaticPath {
   slug: string[];
 }
 
-// Get a single content file by category and slug (handles nested structure)
+// Recursive helper function to find all markdown files
+function findMarkdownFilesRecursively(dir: string, fileList: string[] = []): string[] {
+  const files = fs.readdirSync(dir);
+  for (const file of files) {
+    const filePath = path.join(dir, file);
+    const stat = fs.statSync(filePath);
+    if (stat.isDirectory()) {
+      findMarkdownFilesRecursively(filePath, fileList);
+    } else if (file.endsWith('.md')) {
+      fileList.push(filePath);
+    }
+  }
+  return fileList;
+}
+
+// Get a single content file by category and slug
 export async function getContentBySlug(
   category: string,
   slug: string
 ): Promise<Post | null> {
   const categoryPath = path.join(contentDirectory, category);
+  
+  // Find the file path for the given slug
+  const files = findMarkdownFilesRecursively(categoryPath);
+  const fullPath = files.find(filePath => path.basename(filePath) === `${slug}.md`);
 
-  // Recursively search for the file
-  function findFile(dir: string): string | null {
-    const items = fs.readdirSync(dir);
-
-    for (const item of items) {
-      const fullPath = path.join(dir, item);
-      const stat = fs.statSync(fullPath);
-
-      if (stat.isDirectory()) {
-        const found = findFile(fullPath);
-        if (found) return found;
-      } else if (item === `${slug}.md`) {
-        return fullPath;
-      }
-    }
-    return null;
-  }
-
-  const fullPath = findFile(categoryPath);
   if (!fullPath || !fs.existsSync(fullPath)) {
     return null;
   }
@@ -70,7 +70,6 @@ export async function getContentBySlug(
   const { data, content } = matter(fileContents);
 
   try {
-    // Compile MDX content
     const mdxContent = await compile(content, {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [rehypeHighlight],
@@ -80,12 +79,11 @@ export async function getContentBySlug(
     return {
       slug,
       frontMatter: data as PostMetadata,
-      content: content, // Keep original markdown for fallback
+      content: content,
       mdxContent: String(mdxContent),
     };
   } catch (error) {
     console.error(`Error compiling MDX for ${slug}:`, error);
-    // Fallback to regular markdown if MDX compilation fails
     return {
       slug,
       frontMatter: data as PostMetadata,
@@ -94,7 +92,7 @@ export async function getContentBySlug(
   }
 }
 
-// Get all content from a specific category (handles nested year/month structure)
+// Get all content from a specific category
 export function getAllContent(category: string): Omit<Post, "content" | "mdxContent">[] {
   const categoryPath = path.join(contentDirectory, category);
 
@@ -102,34 +100,21 @@ export function getAllContent(category: string): Omit<Post, "content" | "mdxCont
     return [];
   }
 
-  const allFiles: Array<{ slug: string; frontMatter: PostMetadata }> = [];
+  const allFiles = findMarkdownFilesRecursively(categoryPath);
+  const posts: Omit<Post, "content" | "mdxContent">[] = [];
 
-  // Recursively find all .md files in subdirectories
-  function findMarkdownFiles(dir: string): void {
-    const items = fs.readdirSync(dir);
+  for (const fullPath of allFiles) {
+    const fileContents = fs.readFileSync(fullPath, "utf8");
+    const { data } = matter(fileContents);
+    const slug = path.basename(fullPath, '.md');
 
-    items.forEach((item) => {
-      const fullPath = path.join(dir, item);
-      const stat = fs.statSync(fullPath);
-
-      if (stat.isDirectory()) {
-        findMarkdownFiles(fullPath);
-      } else if (item.endsWith('.md')) {
-        const slug = item.replace(/\.md$/, "");
-        const fileContents = fs.readFileSync(fullPath, "utf8");
-        const { data } = matter(fileContents);
-
-        allFiles.push({
-          slug,
-          frontMatter: data as PostMetadata,
-        });
-      }
+    posts.push({
+      slug,
+      frontMatter: data as PostMetadata,
     });
   }
 
-  findMarkdownFiles(categoryPath);
-
-  return allFiles.sort(
+  return posts.sort(
     (a, b) =>
       new Date(b.frontMatter.date ?? "").getTime() -
       new Date(a.frontMatter.date ?? "").getTime()
@@ -137,20 +122,28 @@ export function getAllContent(category: string): Omit<Post, "content" | "mdxCont
 }
 
 // Get all file paths for static generation
-export function getFilePathsByDirectory(directory: string): StaticPath[] {
-  const directoryPath = path.join(contentDirectory, directory);
-  if (!fs.existsSync(directoryPath)) {
+export function getFilePathsByDirectory(category: string): StaticPath[] {
+  const categoryPath = path.join(contentDirectory, category);
+  if (!fs.existsSync(categoryPath)) {
     return [];
   }
+  
+  const allFiles = findMarkdownFilesRecursively(categoryPath);
+  const paths: StaticPath[] = [];
 
-  const files = fs.readdirSync(directoryPath);
-
-  return files
-    .filter((file) => file.endsWith(".md"))
-    .map((file) => ({
-      slug: [directory, file.replace(/\.md$/, "")],
-    }));
+  for (const filePath of allFiles) {
+    // Determine the part of the path after 'content/category'
+    const relativePath = path.relative(path.join(contentDirectory, category), filePath);
+    // Split the path into an array of slug segments
+    const slugSegments = relativePath.replace(/\.md$/, '').split(path.sep);
+    paths.push({
+      slug: [category, ...slugSegments]
+    });
+  }
+  
+  return paths;
 }
+
 
 // Get the category from the slug array
 export function getDirectoryFromSlug(slug: string[] | undefined): string | null {
@@ -167,30 +160,28 @@ export function getAllPosts(): (Omit<Post, "content" | "mdxContent"> & { categor
       fs.statSync(path.join(contentDirectory, file)).isDirectory()
     );
 
-  directories.forEach((dir) => {
+  for (const dir of directories) {
     const dirPath = path.join(contentDirectory, dir);
-    const files = fs.readdirSync(dirPath);
+    const allFiles = findMarkdownFilesRecursively(dirPath);
 
-    files
-      .filter((file) => file.endsWith(".md"))
-      .forEach((file) => {
-        const slug = file.replace(/\.md$/, "");
-        const fullPath = path.join(dirPath, file);
-        const fileContents = fs.readFileSync(fullPath, "utf8");
-        const { data } = matter(fileContents);
-
-        allPosts.push({
-          slug,
-          frontMatter: data as PostMetadata,
-          category: dir,
-        });
+    for (const fullPath of allFiles) {
+      const fileContents = fs.readFileSync(fullPath, "utf8");
+      const { data } = matter(fileContents);
+      const slug = path.basename(fullPath, '.md');
+      
+      allPosts.push({
+        slug,
+        frontMatter: data as PostMetadata,
+        category: dir,
       });
-  });
+    }
+  }
 
   return allPosts;
 }
 
-export async function getAllPostsInCategory(category: string) {
+// Get all content from a category, specifically for nested year/month structure
+export function getAllPostsInCategory(category: string) {
   try {
     const categoryPath = path.join(contentDirectory, category);
 
@@ -199,41 +190,28 @@ export async function getAllPostsInCategory(category: string) {
     }
 
     const posts: any[] = [];
+    const allFiles = findMarkdownFilesRecursively(categoryPath);
 
-    // Walk through year directories
-    const years = fs.readdirSync(categoryPath, { withFileTypes: true })
-      .filter(dirent => dirent.isDirectory())
-      .map(dirent => dirent.name);
+    for (const fullPath of allFiles) {
+      const fileContents = fs.readFileSync(fullPath, 'utf8');
+      const { data, content } = matter(fileContents);
+      const slug = path.basename(fullPath, '.md');
+      
+      // Determine year and month from the file path
+      const pathParts = path.relative(categoryPath, fullPath).split(path.sep);
+      const year = pathParts[0];
+      const month = pathParts[1];
 
-    for (const year of years) {
-      const yearPath = path.join(categoryPath, year);
-      const months = fs.readdirSync(yearPath, { withFileTypes: true })
-        .filter(dirent => dirent.isDirectory())
-        .map(dirent => dirent.name);
-
-      for (const month of months) {
-        const monthPath = path.join(yearPath, month);
-        const files = fs.readdirSync(monthPath)
-          .filter(name => name.endsWith('.md'));
-
-        for (const file of files) {
-          const filePath = path.join(monthPath, file);
-          const fileContents = fs.readFileSync(filePath, 'utf8');
-          const { data, content } = matter(fileContents);
-
-          posts.push({
-            slug: file.replace(/\.md$/, ''),
-            category,
-            year,
-            month,
-            ...data,
-            content,
-          });
-        }
-      }
+      posts.push({
+        slug,
+        category,
+        year,
+        month,
+        ...data,
+        content,
+      });
     }
 
-    // Sort posts by date (newest first)
     return posts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   } catch (error) {
     console.error(`Error loading posts for category ${category}:`, error);
