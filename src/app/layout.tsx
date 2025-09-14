@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/src/components/Header";
 import Footer from "@/src/components/Footer";
 import LiveChat from "@/src/components/LiveChat";
+import { getCategories } from "@/src/utils/data-fetcher"; // Import the data fetching utility
 
 // Define font variables
 const headingFont = Poppins({
@@ -36,15 +37,20 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+// Add 'async' to make the function able to await for data
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // Fetch the categories data here, outside the component function
+  const { categories } = await getCategories();
+
   return (
     <html lang="en" className={`${headingFont.variable} ${bodyFont.variable}`}>
       <body className="antialiased min-h-screen flex flex-col">
-        <Header />
+        {/* Pass the fetched categories to the Header component */}
+        <Header categories={categories} />
         <main className="flex-1">
           {children}
         </main>
