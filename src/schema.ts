@@ -130,23 +130,16 @@ export const scholarshipSchema = z.object({
 });
 
 
-// Define a union type for all content types
-export const contentSchema = z.union([
-  blogPostSchema,
-  careerAdvancementSchema,
-  codingCourseSchema,
-  creativeSkillsSchema,
-  digitalSkillsSchema,
-  educationSchema,
-  entrepreneurshipSchema,
-  financialAidSchema,
-  healthWellnessSchema,
-  jobBoardSchema,
-  learningResourcesSchema,
-  lifestyleSchema,
-  personalDevelopmentSchema,
-  scholarshipSchema,
-]);
+// Define a flexible base content schema that works with all content types
+export const contentSchema = z.object({
+  title: z.string(),
+  date: z.string().optional(),
+  description: z.string().optional(),
+  author: z.string().optional(),
+  tags: z.array(z.string()).optional(),
+  featured: z.boolean().optional(),
+  // Allow any additional fields
+}).passthrough();
 
 // Infer the TypeScript types from the schemas
 export type BlogPost = z.infer<typeof blogPostSchema>;

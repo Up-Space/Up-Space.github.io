@@ -1,6 +1,6 @@
 import { getAllContent } from '../lib/cms';
 import categories from '../../cms/categories.json';
-import { stats as homeStats } from '../../cms/stats.json';
+import homeStats from '../../cms/stats.json';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
@@ -42,7 +42,7 @@ export async function getHomePageDataForApp() {
     return acc;
   }, {} as Record<string, number>);
   
-  const stats = homeStats.map(stat => {
+  const stats = homeStats.stats.map(stat => {
     const dynamicValue = totalStats[stat.icon] || 0;
     // If dynamic count is at or above the threshold, use it. Otherwise, use the CMS value.
     const displayValue = dynamicValue >= STATS_UPDATE_THRESHOLD ? `${dynamicValue}+` : stat.value;
