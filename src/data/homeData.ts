@@ -7,6 +7,8 @@ import matter from 'gray-matter';
 
 const STATS_UPDATE_THRESHOLD = 20;
 
+const contentBaseDir = path.join(process.cwd(), 'content');
+
 /**
  * Read homepage data from CMS markdown file
  */
@@ -27,17 +29,19 @@ export async function getHomePageDataForApp() {
   const homePageData = getHomePageData();
   
   // Fetch featured posts and jobs based on slugs defined in the CMS
+  // Use the correct base directory for each category
   const featuredPosts = homePageData.featuredPosts
-    ?.map((slug: any) => getAllContent(slug.category).find(post => post.slug === slug.post))
+    ?.map((slug: any) => getAllContent(path.join(contentBaseDir, slug.category), slug.category).find(post => post.slug === slug.post))
     .filter(Boolean) || []; // Filter out any posts that weren't found
 
   const featuredJobs = homePageData.featuredJobs
-    ?.map((slug: any) => getAllContent(slug.category).find(job => job.slug === slug.job))
+    ?.map((slug: any) => getAllContent(path.join(contentBaseDir, slug.category), slug.category).find(job => job.slug === slug.job))
     .filter(Boolean) || [];
   
   // Calculate stats dynamically from all content
   const totalStats: Record<string, number> = categories.reduce((acc, category) => {
-    const content = getAllContent(category.slug);
+    const baseDir = category.slug === 'reviews' ? 'cms' : 'content';
+    const content = getAllContent(path.join(process.cwd(), baseDir, category.slug), category.slug);
     acc[category.slug] = content.length;
     return acc;
   }, {} as Record<string, number>);

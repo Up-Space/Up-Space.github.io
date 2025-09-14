@@ -17,6 +17,10 @@ const slugify = (text: string) => {
 
 // Recursive function to find all markdown files in subdirectories
 function findMarkdownFilesRecursively(dir: string, fileList: string[] = []): string[] {
+  if (!fs.existsSync(dir)) {
+    console.warn(`Directory not found: ${dir}`);
+    return [];
+  }
   const files = fs.readdirSync(dir);
   for (const file of files) {
     const filePath = path.join(dir, file);
@@ -30,26 +34,17 @@ function findMarkdownFilesRecursively(dir: string, fileList: string[] = []): str
   return fileList;
 }
 
-// Main function to get all content for a given category
-export function getAllContent(categorySlug: string) {
-  const contentDir = path.join(process.cwd(), 'content', categorySlug);
-  
-  // Check if directory exists
-  if (!fs.existsSync(contentDir)) {
-    console.warn(`Content directory not found for category: ${categorySlug}`);
-    return [];
-  }
-  
-  // Get all markdown files recursively
-  const allMarkdownFiles = findMarkdownFilesRecursively(contentDir);
+// Main function to get all content for a given directory
+export function getAllContent(dir: string, categorySlug: string) {
+  const allMarkdownFiles = findMarkdownFilesRecursively(dir);
 
   const allContent = allMarkdownFiles.map(fullPath => {
     const fileName = path.basename(fullPath);
     const slug = fileName.replace(/\.md$/, '');
     const fileContents = fs.readFileSync(fullPath, 'utf8');
     const { data, content } = matter(fileContents);
-    
-    // Use the data as-is without strict validation
+
+    // Use the data as-is without strict validation for now
     const validatedData = data;
 
     return {
@@ -70,15 +65,15 @@ export function getAllContent(categorySlug: string) {
 
 // Function to get a single piece of content by category and slug
 export async function getContentBySlug(categorySlug: string, slug: string) {
-  const contentDir = path.join(process.cwd(), 'content', categorySlug);
-  
+  const baseDir = path.join(process.cwd(), 'content', categorySlug);
+
   // Check if category directory exists
-  if (!fs.existsSync(contentDir)) {
+  if (!fs.existsSync(baseDir)) {
     throw new Error(`Content directory not found for category: ${categorySlug}`);
   }
 
   // Find the file recursively in subdirectories
-  const allMarkdownFiles = findMarkdownFilesRecursively(contentDir);
+  const allMarkdownFiles = findMarkdownFilesRecursively(baseDir);
   const fullPath = allMarkdownFiles.find(filePath => {
     const fileName = path.basename(filePath, '.md');
     return fileName === slug;
