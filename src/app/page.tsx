@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Header from '@/src/components/Header';
-import { getHomePageData } from '@/src/data/homeData';
+import { getHomePageDataForApp } from '@/src/data/homeData';
 import { StatCard } from '@/src/components/StatCard';
 import { CategoryCard } from '@/src/components/CategoryCard';
 import allCategories from '../../cms/categories.json';
@@ -15,7 +15,7 @@ export const metadata = {
 // This is a server component, indicated by the 'async' keyword
 export default async function HomePage() {
   // Fetch all necessary data for the page in one call
-  const { stats, featuredCategories, featuredPosts, featuredJobs } = await getHomePageData();
+  const { stats, featuredCategories, featuredPosts, featuredJobs } = await getHomePageDataForApp();
   
   return (
     <div className="min-h-screen">
