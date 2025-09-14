@@ -1,10 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import Header from '@/src/components/Header';
 import { getHomePageDataForApp } from '@/src/data/homeData';
 import { StatCard } from '@/src/components/StatCard';
 import { CategoryCard } from '@/src/components/CategoryCard';
-import allCategories from '../../cms/categories.json';
 
 // Metadata for the page, updated with the new brand name
 export const metadata = {
@@ -19,7 +17,6 @@ export default async function HomePage() {
   
   return (
     <div className="min-h-screen">
-      <Header categories={allCategories} />
       
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-16 sm:py-20 lg:py-32">
