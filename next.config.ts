@@ -2,6 +2,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // Allow all hosts for Replit development environment
+  allowedHosts: ['*'],
   async headers() {
     return [
       {
@@ -23,7 +25,9 @@ const nextConfig: NextConfig = {
       },
     ];
   },
-  experimental: {},
+  experimental: {
+    allowedRevalidateHeaderKeys: ['*'],
+  },
   // Configure allowed origins for development
   async rewrites() {
     return [];
