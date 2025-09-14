@@ -39,43 +39,29 @@ collections:
   
   - name: "home-page"
     label: "Home Page"
-    file: "cms/home.json"
+    file: "cms/home-data.md"
+    format: "frontmatter"
     fields:
-      - {label: "Hero Title", name: "hero_title", widget: "string"}
-      - {label: "Hero Subtitle", name: "hero_subtitle", widget: "string", required: false}
-      - label: "Stats"
-        name: "stats"
-        widget: "list"
-        fields:
-          - {label: "Value", name: "value", widget: "string"}
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Icon", name: "icon", widget: "string"}
-      - label: "Featured Categories"
-        name: "featured_categories"
-        widget: "list"
-        fields:
-          - {label: "Category Title", name: "title", widget: "string"}
-          - {label: "Category Description", name: "description", widget: "string"}
-          - {label: "Category Icon", name: "icon", widget: "image", required: false}
-      - label: "Trending Posts"
-        name: "trending_posts"
-        widget: "list"
-        fields:
-          - {label: "Post Title", name: "title", widget: "string"}
-          - {label: "Post Slug", name: "slug", widget: "string", hint: "The slug of the post (e.g., how-to-apply-for-educational-grants)"}
-          - {label: "Post Excerpt", name: "excerpt", widget: "string", required: false}
-          - {label: "Featured Image", name: "image", widget: "image", required: false}
-      - label: "Featured Jobs"
-        name: "featured_jobs"
-        widget: "list"
-        fields:
-          - {label: "Job ID", name: "id", widget: "string"}
-          - {label: "Job Title", name: "title", widget: "string"}
-          - {label: "Company", name: "company", widget: "string"}
-          - {label: "Company Logo", name: "companyLogo", widget: "image", required: false}
-          - {label: "Location", name: "location", widget: "string"}
-          - {label: "Tags", name: "tags", widget: "list", required: false}
-          - {label: "Application Link", name: "link", widget: "string", required: false}
+      - { label: "Featured Categories", name: "featuredCategories", widget: "list", required: false, allow_add: true, hint: "A list of category slugs to feature on the homepage." }
+      - { label: "Featured Posts", name: "featuredPosts", widget: "list", required: false, allow_add: true, fields: [ { label: "Category", name: "category", widget: "string" }, { label: "Post", name: "post", widget: "string" } ] }
+      - { label: "Featured Jobs", name: "featuredJobs", widget: "list", required: false, allow_add: true, fields: [ { label: "Category", name: "category", widget: "string" }, { label: "Job", name: "job", widget: "string" } ] }
+
+  - name: "stats"
+    label: "Stats"
+    folder: "cms"
+    file: "cms/stats.json"
+    fields:
+      - {
+          label: "Stats",
+          name: "stats",
+          widget: "list",
+          summary: "{{fields.title}}",
+          fields: [
+            {label: "Title", name: "title", widget: "string"},
+            {label: "Value", name: "value", widget: "string"},
+            {label: "Icon", name: "icon", widget: "string"}
+          ]
+        }
 
   - name: "blog-posts"
     label: "Blog Posts"

@@ -3,7 +3,7 @@ import Link from 'next/link';
 // Mock data to simulate a fetch from an API
 const getDashboardData = async () => {
   // In a real application, this would be an API call
-  // const res = await fetch('https://api.qspace.com/dashboard');
+  // const res = await fetch('https://api.upspace.com/dashboard');
   // const data = await res.json();
   // return data;
 
@@ -41,7 +41,7 @@ export default async function Dashboard() {
         </div>
         <div className="bg-green-50 rounded-lg p-6 text-center">
           <div className="text-3xl font-bold text-green-600 mb-2">{userStats.coursesCompleted}</div>
-          <div className="text-gray-600">Courses Completed</div>
+          <div className="text-600">Courses Completed</div>
         </div>
         <div className="bg-yellow-50 rounded-lg p-6 text-center">
           <div className="text-3xl font-bold text-yellow-600 mb-2">{userStats.scholarshipsApplied}</div>

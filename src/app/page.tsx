@@ -4,10 +4,11 @@ import Header from '@/src/components/Header';
 import { getHomePageData } from '@/src/data/homeData';
 import { StatCard } from '@/src/components/StatCard';
 import { CategoryCard } from '@/src/components/CategoryCard';
+import allCategories from '../../cms/categories.json';
 
 // Metadata for the page, updated with the new brand name
 export const metadata = {
-  title: 'QSpace | Your Hub for Digital, Tech & Career Growth',
+  title: 'UpSpace | Your Hub for Digital, Tech & Career Growth',
   description: 'Discover resources, master new digital skills, and accelerate your academic and professional journey with curated content and opportunities.',
 };
 
@@ -16,14 +17,6 @@ export default async function HomePage() {
   // Fetch all necessary data for the page in one call
   const { stats, featuredCategories, featuredPosts, featuredJobs } = await getHomePageData();
   
-  // Note: The Header component expects a list of ALL categories to build its navigation
-  // So we fetch them separately here
-  const { promises as fs } = await import('fs');
-  const path = await import('path');
-  const filePath = path.join(process.cwd(), 'cms', 'categories.json');
-  const fileContents = await fs.readFile(filePath, 'utf8');
-  const allCategories = JSON.parse(fileContents);
-
   return (
     <div className="min-h-screen">
       <Header categories={allCategories} />
@@ -33,7 +26,7 @@ export default async function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="text-center lg:text-left">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
                 Your Space to{' '}
                 <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
                   Build, Grow,
@@ -43,7 +36,7 @@ export default async function HomePage() {
                   Lead
                 </span>
               </h1>
-              <p className="text-lg sm:text-xl text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              <p className="text-lg sm:text-xl font-body text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 Discover digital skills, master new technologies, and accelerate your academic and professional journey with curated resources designed for success.
               </p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
@@ -97,10 +90,10 @@ export default async function HomePage() {
       <section className="py-16 sm:py-20 lg:py-24 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900 mb-4">
               Explore Our Categories
             </h2>
-            <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4">
+            <p className="text-lg sm:text-xl font-body text-gray-600 max-w-3xl mx-auto px-4">
               Discover curated resources across multiple domains to support your academic and professional growth.
             </p>
           </div>
@@ -116,7 +109,7 @@ export default async function HomePage() {
       <section className="py-16 sm:py-20 lg:py-24 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">Trending Blog Posts</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">Trending Blog Posts</h2>
             <Link href="/blog-posts" className="text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200">
               View All →
             </Link>
@@ -137,8 +130,8 @@ export default async function HomePage() {
                     </div>
                   )}
                   <div className="p-6 sm:p-8">
-                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-200">{post.frontMatter.title}</h3>
-                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">{post.frontMatter.excerpt}</p>
+                    <h3 className="text-lg sm:text-xl font-heading font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors duration-200">{post.frontMatter.title}</h3>
+                    <p className="text-gray-600 text-sm sm:text-base font-body leading-relaxed">{post.frontMatter.excerpt}</p>
                   </div>
                 </div>
               </Link>
@@ -151,7 +144,7 @@ export default async function HomePage() {
       <section className="py-16 sm:py-20 lg:py-24 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">Featured Job Opportunities</h2>
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-gray-900">Featured Job Opportunities</h2>
             <Link href="/job-board" className="text-blue-600 hover:text-blue-700 font-semibold transition-colors duration-200">
               View All →
             </Link>
@@ -170,14 +163,14 @@ export default async function HomePage() {
                     />
                   )}
                   <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">{job.frontMatter.title}</h3>
-                    <p className="text-gray-600 text-sm">{job.frontMatter.company}</p>
+                    <h3 className="text-xl font-heading font-bold text-gray-900 mb-1">{job.frontMatter.title}</h3>
+                    <p className="text-gray-600 text-sm font-body">{job.frontMatter.company}</p>
                   </div>
                 </div>
-                <p className="text-gray-700 mb-4">{job.frontMatter.location}</p>
+                <p className="text-gray-700 font-body mb-4">{job.frontMatter.location}</p>
                 <div className="flex flex-wrap gap-2 text-xs">
                   {job.frontMatter.tags.map((tag) => (
-                    <span key={tag} className="bg-gray-100 text-gray-700 rounded-full px-3 py-1 font-medium">
+                    <span key={tag} className="bg-gray-100 text-gray-700 rounded-full px-3 py-1 font-body font-medium">
                       {tag}
                     </span>
                   ))}
@@ -197,11 +190,11 @@ export default async function HomePage() {
       {/* Call to Action */}
       <section className="py-16 sm:py-20 lg:py-24 bg-gradient-to-r from-blue-600 to-indigo-600">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-heading font-bold text-white mb-4 sm:mb-6">
             Ready to Start Your Journey?
           </h2>
-          <p className="text-lg sm:text-xl text-blue-100 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
-            Join thousands of students and professionals who are already accelerating their success with QSpace.
+          <p className="text-lg sm:text-xl font-body text-blue-100 mb-6 sm:mb-8 max-w-2xl mx-auto px-4">
+            Join thousands of students and professionals who are already accelerating their success with UpSpace.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center max-w-md sm:max-w-none mx-auto">
             <Link

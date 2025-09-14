@@ -7,8 +7,8 @@
     "coverImage": "/images/categories/blog-posts.jpg",
     "featured": false,
     "navGroup": "main",
-    "seoTitle": "Latest Blogs & News - QSpace",
-    "seoDescription": "Stay updated with the latest insights, stories, and news from the QSpace community.",
+    "seoTitle": "Latest Blogs & News - UpSpace",
+    "seoDescription": "Stay updated with the latest insights, stories, and news from the UpSpace community.",
     "keywords": [
       "blog",
       "news",
@@ -29,7 +29,7 @@
     "coverImage": "/images/categories/career-advancement.jpg",
     "featured": true,
     "navGroup": "main",
-    "seoTitle": "Career Advancement Resources - QSpace",
+    "seoTitle": "Career Advancement Resources - UpSpace",
     "seoDescription": "Discover resources and strategies to advance your career and reach new professional heights.",
     "keywords": [
       "career",
@@ -51,7 +51,7 @@
     "coverImage": "/images/categories/coding-courses.jpg",
     "featured": true,
     "navGroup": "main",
-    "seoTitle": "Coding Courses & Tutorials - QSpace",
+    "seoTitle": "Coding Courses & Tutorials - UpSpace",
     "seoDescription": "Master programming with our curated collection of coding courses, tutorials, and bootcamps.",
     "keywords": [
       "coding",
@@ -74,13 +74,18 @@
     "coverImage": "/images/categories/creative-skills.jpg",
     "featured": false,
     "navGroup": "dropdown",
-    "seoTitle": "",
-    "seoDescription": "",
-    "keywords": [],
+    "seoTitle": "Creative Skills - UpSpace",
+    "seoDescription": "Explore design, writing, and other creative disciplines with our resources.",
+    "keywords": [
+      "creative skills",
+      "design",
+      "writing",
+      "art"
+    ],
     "sortBy": "date",
     "sortOrder": "desc",
     "featuredPosts": [],
-    "canonicalUrl": ""
+    "canonicalUrl": "/creative-skills"
   },
   {
     "slug": "digital-skills",
@@ -89,8 +94,8 @@
     "icon": "/icons/icon_digital_skills_violet_v1.png",
     "coverImage": "/images/categories/digital-skills.jpg",
     "featured": true,
-    "navGroup": "main",
-    "seoTitle": "Digital Skills Training - QSpace",
+    "navGroup": "dropdown",
+    "seoTitle": "Digital Skills Training - UpSpace",
     "seoDescription": "Master essential digital tools and platforms for success in the modern economy.",
     "keywords": [
       "digital skills",
@@ -111,8 +116,8 @@
     "icon": "/icons/icon_education_navyblue_v1.png",
     "coverImage": "/images/categories/education.jpg",
     "featured": true,
-    "navGroup": "main",
-    "seoTitle": "Education Resources - QSpace",
+    "navGroup": "dropdown",
+    "seoTitle": "Education Resources - UpSpace",
     "seoDescription": "Explore academic programs, study tips, and learning pathways to enhance your education.",
     "keywords": [
       "education",
@@ -134,13 +139,18 @@
     "coverImage": "/images/categories/entrepreneurship.jpg",
     "featured": true,
     "navGroup": "dropdown",
-    "seoTitle": "",
-    "seoDescription": "",
-    "keywords": [],
+    "seoTitle": "Entrepreneurship - UpSpace",
+    "seoDescription": "Launch and grow your own business or startup with our expert resources.",
+    "keywords": [
+      "entrepreneurship",
+      "startup",
+      "business",
+      "launch"
+    ],
     "sortBy": "date",
     "sortOrder": "desc",
     "featuredPosts": [],
-    "canonicalUrl": ""
+    "canonicalUrl": "/entrepreneurship"
   },
   {
     "slug": "financial-aid",
@@ -150,13 +160,18 @@
     "coverImage": "/images/categories/financial-aid.jpg",
     "featured": true,
     "navGroup": "dropdown",
-    "seoTitle": "",
-    "seoDescription": "",
-    "keywords": [],
+    "seoTitle": "Financial Aids - UpSpace",
+    "seoDescription": "Find scholarships, grants, and funding opportunities to support your educational journey.",
+    "keywords": [
+      "financial aid",
+      "grants",
+      "funding",
+      "scholarships"
+    ],
     "sortBy": "date",
     "sortOrder": "desc",
     "featuredPosts": [],
-    "canonicalUrl": ""
+    "canonicalUrl": "/financial-aid"
   },
   {
     "slug": "health-wellness",
@@ -166,13 +181,18 @@
     "coverImage": "/images/categories/health-wellness.jpg",
     "featured": false,
     "navGroup": "dropdown",
-    "seoTitle": "",
-    "seoDescription": "",
-    "keywords": [],
+    "seoTitle": "Health & Wellness - UpSpace",
+    "seoDescription": "Find resources to support your physical and mental well-being.",
+    "keywords": [
+      "health",
+      "wellness",
+      "mental health",
+      "physical health"
+    ],
     "sortBy": "date",
     "sortOrder": "desc",
     "featuredPosts": [],
-    "canonicalUrl": ""
+    "canonicalUrl": "/health-wellness"
   },
   {
     "slug": "job-board",
@@ -182,7 +202,7 @@
     "coverImage": "/images/categories/job-board.jpg",
     "featured": true,
     "navGroup": "main",
-    "seoTitle": "Job Board - Latest Opportunities - QSpace",
+    "seoTitle": "Job Board - Latest Opportunities - UpSpace",
     "seoDescription": "Find the latest job listings and internship opportunities across various industries.",
     "keywords": [
       "jobs",
@@ -204,13 +224,19 @@
     "coverImage": "/images/categories/learning-resources.jpg",
     "featured": false,
     "navGroup": "main",
-    "seoTitle": "",
-    "seoDescription": "",
-    "keywords": [],
+    "seoTitle": "Learning Resources - UpSpace",
+    "seoDescription": "Access a wide range of guides, platforms, and tools to support your learning journey.",
+    "keywords": [
+      "learning",
+      "resources",
+      "guides",
+      "tools",
+      "growth"
+    ],
     "sortBy": "date",
     "sortOrder": "desc",
     "featuredPosts": [],
-    "canonicalUrl": ""
+    "canonicalUrl": "/learning-resources"
   },
   {
     "slug": "lifestyle",
@@ -219,14 +245,19 @@
     "icon": "/icons/icon_lifestyle_coralorange_v1.png",
     "coverImage": "/images/categories/lifestyle.jpg",
     "featured": false,
-    "navGroup": "main",
-    "seoTitle": "",
-    "seoDescription": "",
-    "keywords": [],
+    "navGroup": "dropdown",
+    "seoTitle": "Lifestyle - UpSpace",
+    "seoDescription": "Find tips and ideas for living a balanced and fulfilling life.",
+    "keywords": [
+      "lifestyle",
+      "balance",
+      "well-being",
+      "daily life"
+    ],
     "sortBy": "date",
     "sortOrder": "desc",
     "featuredPosts": [],
-    "canonicalUrl": ""
+    "canonicalUrl": "/lifestyle"
   },
   {
     "slug": "personal-development",
@@ -236,7 +267,7 @@
     "coverImage": "/images/categories/personal-development.jpg",
     "featured": true,
     "navGroup": "dropdown",
-    "seoTitle": "Personal Development Resources - QSpace",
+    "seoTitle": "Personal Development Resources - UpSpace",
     "seoDescription": "Transform your mindset and build better habits with our personal development resources.",
     "keywords": [
       "personal development",
@@ -258,7 +289,7 @@
     "coverImage": "/images/categories/scholarships.jpg",
     "featured": true,
     "navGroup": "main",
-    "seoTitle": "Scholarships & Educational Funding - QSpace",
+    "seoTitle": "Scholarships & Educational Funding - UpSpace",
     "seoDescription": "Find scholarships and funding opportunities to support your educational journey.",
     "keywords": [
       "scholarships",

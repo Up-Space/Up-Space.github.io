@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UpSpace Website
+
+Your Space to Learn, Create, and Lead. Empowering the next generation of scholars with resources, opportunities, and community.
+
+This is the codebase for the **UpSpace** project, a dynamic website built with **Next.js** and a file-based **CMS** (Content Management System) that allows non-technical users to manage content easily.
 
 ## Getting Started
 
-First, run the development server:
+First, ensure all dependencies are installed.
 
 ```bash
+npm install
+
+Next, run the development server:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000 with your browser to see the website. The site will automatically update as you edit files.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Content Management (CMS)
+Content for the website is managed through the integrated Netlify CMS.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Local CMS Access
+To access the CMS locally, you must be running the development server.
+ * Start the development server: npm run dev
+ * Navigate to the CMS admin page: http://localhost:3000/admin
+ 
+Key Content Files
+ * Categories: /cms/categories.json
+ * Homepage Data: /cms/home-data.md
+ * Stats: /cms/stats.json
+ 
+Project Structure
+The project follows a standard Next.js directory structure with a focus on clear separation of concerns:
+ * app/: Main application components and pages.
+ * content/: All Markdown files for your blog posts and resources.
+ * cms/: Configuration and data files for the CMS.
+ * public/: Static assets like images, icons, and fonts.
+ * src/lib/: Utility functions and helper libraries.
+ * src/components/: Reusable React components.
+ 
+Deploying to Production
+The easiest way to deploy this application is to use a platform like Vercel or Netlify. The project is pre-configured to work with either service.
 
-## Learn More
+Vercel
+Simply connect your Git repository to Vercel, and it will automatically detect the Next.js project and deploy it.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Netlify
+Connect your Git repository and set the following build settings:
+ * Build command: npm run build
+ * Publish directory: out

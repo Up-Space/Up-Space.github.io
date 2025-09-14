@@ -1,0 +1,29 @@
+{
+  "stats": [
+    {
+      "title": "Active Scholarships",
+      "value": "13K+",
+      "icon": "scholarships"
+    },
+    {
+      "title": "Coding Courses",
+      "value": "6k+",
+      "icon": "coding-courses"
+    },
+    {
+      "title": "Job Opportunities",
+      "value": "17k+",
+      "icon": "job-board"
+    },
+    {
+      "title": "Digital Resources",
+      "value": "23k+",
+      "icon": "digital-skills"
+    },
+    {
+      "title": "Blog Posts",
+      "value": "32k+",
+      "icon": "blog-posts"
+    }
+  ]
+}

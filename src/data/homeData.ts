@@ -1,10 +1,9 @@
-// This file will now dynamically pull data from your CMS
 import { getAllContent } from '../lib/cms';
 import categories from '../../cms/categories.json';
-
-// We will fetch the homeData from a new content file in the CMS
-// This allows you to manage the homepage content without changing code
+import { stats as homeStats } from '../../cms/stats.json';
 import { frontMatter as homePageData } from '../../cms/home-data.md';
+
+const STATS_UPDATE_THRESHOLD = 20;
 
 /**
  * Dynamically fetches and organizes all data needed for the homepage.
@@ -28,13 +27,15 @@ export async function getHomePageData() {
     return acc;
   }, {});
   
-  const stats = [
-    { value: `${totalStats['scholarships'] || 0}+`, title: "Active Scholarships", icon: "scholarships" },
-    { value: `${totalStats['coding-courses'] || 0}+`, title: "Coding Courses", icon: "coding-courses" },
-    { value: `${totalStats['job-board'] || 0}+`, title: "Job Opportunities", icon: "job-board" },
-    { value: `${totalStats['digital-skills'] || 0}+`, title: "Digital Resources", icon: "digital-skills" },
-    { value: `${totalStats['blog-posts'] || 0}+`, title: "Blog Posts", icon: "blog-posts" },
-  ];
+  const stats = homeStats.map(stat => {
+    const dynamicValue = totalStats[stat.icon] || 0;
+    // If dynamic count is at or above the threshold, use it. Otherwise, use the CMS value.
+    const displayValue = dynamicValue >= STATS_UPDATE_THRESHOLD ? `${dynamicValue}+` : stat.value;
+    return {
+      ...stat,
+      value: displayValue
+    };
+  });
   
   // Find featured categories based on the slugs in your CMS data
   const featuredCategories = categories.filter(category => homePageData.featuredCategories.includes(category.slug));
