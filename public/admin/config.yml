@@ -6,63 +6,79 @@ media_folder: "public/uploads"
 public_folder: "/uploads"
 
 collections:
-  - name: "categories"
-    label: "Categories"
-    folder: "cms"
-    file: "cms/categories.json"
+  - name: 'reviews'
+    label: 'Reviews'
+    folder: 'cms/reviews'
+    create: true
+    slug: '{{slug}}'
     fields:
-      - {
-          label: "Categories",
-          name: "categories",
-          widget: "list",
-          summary: "{{fields.title}}",
-          fields: [
-            {label: "Title", name: "title", widget: "string"},
-            {label: "Slug", name: "slug", widget: "string"},
-            {label: "Icon", name: "icon", widget: "image", required: false, media_folder: "public/icons", public_folder: "/icons"},
-            {label: "Cover Image", name: "coverImage", widget: "image", required: false, media_folder: "public/images/categories", public_folder: "/images/categories"},
-            {label: "Description", name: "description", widget: "string"},
-            {label: "Category Introduction", name: "introduction", widget: "markdown", required: false},
-            {label: "Featured on Homepage", name: "featured", widget: "boolean", default: false},
-            {label: "Navigation Group", name: "navGroup", widget: "select", options: ["main", "dropdown"], default: "main"},
-            {label: "SEO Title", name: "seoTitle", widget: "string", required: false},
-            {label: "SEO Description", name: "seoDescription", widget: "text", required: false},
-            {label: "Keywords", name: "keywords", widget: "list", required: false},
-            {label: "Sort By", name: "sortBy", widget: "select", options: ["date", "title", "level", "deadline"], default: "date"},
-            {label: "Sort Order", name: "sortOrder", widget: "select", options: ["asc", "desc"], default: "desc"},
-            {label: "Canonical URL", name: "canonicalUrl", widget: "string", required: false},
-            {label: "Featured Posts", name: "featuredPosts", widget: "list", fields: [
-              {label: "Post Slug", name: "slug", widget: "string"}
-            ]}
-          ]
-        }
+      - { name: 'title', label: 'Review Title', widget: 'string' }
+      - { name: 'description', label: 'Description', widget: 'text' }
+      - { name: 'rating', label: 'Rating (1-5)', widget: 'number', min: 1, max: 5 }
+      - { name: 'body', label: 'Review Content', widget: 'markdown' }
+      
+  # Corrected Home Page configuration
+  - name: 'site-content'
+    label: 'Site Content'
+    files:
+      - name: "home-page"
+        label: "Home Page"
+        file: "cms/home-data.md"
+        format: "frontmatter"
+        fields:
+          - { label: "Featured Categories", name: "featuredCategories", widget: "list", required: false, allow_add: true, hint: "A list of category slugs to feature on the homepage." }
+          - { label: "Featured Posts", name: "featuredPosts", widget: "list", required: false, allow_add: true, fields: [ { label: "Category", name: "category", widget: "string" }, { label: "Post", name: "post", widget: "string" } ] }
+          - { label: "Featured Jobs", name: "featuredJobs", widget: "list", required: false, allow_add: true, fields: [ { label: "Category", name: "category", widget: "string" }, { label: "Job", name: "job", widget: "string" } ] }
+
+      # Corrected Categories configuration
+      - name: "categories"
+        label: "Categories"
+        file: "cms/categories.json"
+        fields:
+          - {
+              label: "Categories",
+              name: "categories",
+              widget: "list",
+              summary: "{{fields.title}}",
+              fields: [
+                {label: "Title", name: "title", widget: "string"},
+                {label: "Slug", name: "slug", widget: "string"},
+                {label: "Icon", name: "icon", widget: "image", required: false, media_folder: "public/icons", public_folder: "/icons"},
+                {label: "Cover Image", name: "coverImage", widget: "image", required: false, media_folder: "public/images/categories", public_folder: "/images/categories"},
+                {label: "Description", name: "description", widget: "string"},
+                {label: "Category Introduction", name: "introduction", widget: "markdown", required: false},
+                {label: "Featured on Homepage", name: "featured", widget: "boolean", default: false},
+                {label: "Navigation Group", name: "navGroup", widget: "select", options: ["main", "dropdown"], default: "main"},
+                {label: "SEO Title", name: "seoTitle", widget: "string", required: false},
+                {label: "SEO Description", name: "seoDescription", widget: "text", required: false},
+                {label: "Keywords", name: "keywords", widget: "list", required: false},
+                {label: "Sort By", name: "sortBy", widget: "select", options: ["date", "title", "level", "deadline"], default: "date"},
+                {label: "Sort Order", name: "sortOrder", widget: "select", options: ["asc", "desc"], default: "desc"},
+                {label: "Canonical URL", name: "canonicalUrl", widget: "string", required: false},
+                {label: "Featured Posts", name: "featuredPosts", widget: "list", fields: [
+                  {label: "Post Slug", name: "slug", widget: "string"}
+                ]}
+              ]
+            }
+
+      # Corrected Stats configuration
+      - name: "stats"
+        label: "Stats"
+        file: "cms/stats.json"
+        fields:
+          - {
+              label: "Stats",
+              name: "stats",
+              widget: "list",
+              summary: "{{fields.title}}",
+              fields: [
+                {label: "Title", name: "title", widget: "string"},
+                {label: "Value", name: "value", widget: "string"},
+                {label: "Icon", name: "icon", widget: "string"}
+              ]
+            }
   
-  - name: "home-page"
-    label: "Home Page"
-    file: "cms/home-data.md"
-    format: "frontmatter"
-    fields:
-      - { label: "Featured Categories", name: "featuredCategories", widget: "list", required: false, allow_add: true, hint: "A list of category slugs to feature on the homepage." }
-      - { label: "Featured Posts", name: "featuredPosts", widget: "list", required: false, allow_add: true, fields: [ { label: "Category", name: "category", widget: "string" }, { label: "Post", name: "post", widget: "string" } ] }
-      - { label: "Featured Jobs", name: "featuredJobs", widget: "list", required: false, allow_add: true, fields: [ { label: "Category", name: "category", widget: "string" }, { label: "Job", name: "job", widget: "string" } ] }
-
-  - name: "stats"
-    label: "Stats"
-    folder: "cms"
-    file: "cms/stats.json"
-    fields:
-      - {
-          label: "Stats",
-          name: "stats",
-          widget: "list",
-          summary: "{{fields.title}}",
-          fields: [
-            {label: "Title", name: "title", widget: "string"},
-            {label: "Value", name: "value", widget: "string"},
-            {label: "Icon", name: "icon", widget: "string"}
-          ]
-        }
-
+  # All your other folder-based collections remain the same below
   - name: "blog-posts"
     label: "Blog Posts"
     folder: "content/blog-posts"
@@ -136,7 +152,6 @@ collections:
       - {label: "Course Image", name: "course_image", widget: "image", required: false}
       - {label: "Body", name: "body", widget: "markdown"}
       
-
   - name: "personal-development"
     label: "Personal Development"
     folder: "content/personal-development"
