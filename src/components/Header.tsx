@@ -29,17 +29,18 @@ export default function Header({ categories }) {
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-20">
           {/* Logo and Brand */}
-          <Link href="/" className="flex flex-col items-center group min-w-0">
-            <div className="flex flex-col items-center">
+          <Link href="/" className="flex items-center group min-w-0">
+            <div className="flex items-center gap-3">
               <Image
                 src="/logo.png"
-                alt="UpSpace Logo"
+                alt="UpSpace"
                 width={200}
                 height={50}
-                className="group-hover:scale-105 transition-transform"
-                style={{ width: 'auto', height: 'auto', maxWidth: '200px', maxHeight: '50px' }}
+                className="w-auto h-10 md:h-12"
               />
-              <p className="text-xs text-gray-600 mt-1 whitespace-nowrap font-medium">Your Space to Learn, Create, and Lead</p>
+              <span className="text-gray-600 text-sm font-medium hidden md:inline">
+                Learn, Create, and Lead
+              </span>
             </div>
           </Link>
 
@@ -175,7 +176,6 @@ export default function Header({ categories }) {
         )}
       </div>
 
-      {/* Overlay for dropdown */}
       {activeDropdown && (
         <div className="fixed inset-0 z-40" onClick={() => setActiveDropdown(null)} />
       )}

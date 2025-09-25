@@ -6,21 +6,22 @@ export default function Footer() {
     <footer className="bg-gray-900 text-white">
       <div className="container mx-auto px-6 py-12">
         <div className="grid md:grid-cols-4 gap-8">
-          {/* Logo and Description */}
+          {/* Logo and Tagline */}
           <div className="md:col-span-2">
-            <div className="flex items-center mb-4">
+            <div className="flex items-center mb-4 gap-3">
               <Image
                 src="/logo.png"
-                alt="UpSpace"
+                alt="UpSpace Logo"
                 width={40}
                 height={40}
-                className="mr-3"
+                className="w-auto h-8"
               />
-              <span className="text-xl font-bold">UpSpace</span>
+              <span className="text-gray-400 text-sm font-medium">
+                Learn, Create, and Lead
+              </span>
             </div>
             <p className="text-gray-400 mb-4">
-              Your Space to Learn, Create, and Lead. Empowering the next generation 
-              of scholars with resources, opportunities, and community.
+              Empowering the next generation of scholars with resources, opportunities, and community.
             </p>
             <div className="flex space-x-4">
               <a href="#" className="text-gray-400 hover:text-white transition-colors">

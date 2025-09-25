@@ -23,15 +23,17 @@ export default async function HomePage() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
             <div className="text-center lg:text-left">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-heading font-bold text-gray-900 mb-4 sm:mb-6 leading-tight">
-                Your Space to{' '}
-                <span className="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                  Build, Grow,
-                </span>{' '}
-                and{' '}
-                <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                  Lead
+              <p className="text-sm sm:text-base font-semibold text-blue-600 mb-2 sm:mb-4">
+                <span className="text-green-500">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 inline-block mr-1">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
+                  </svg>
                 </span>
+                Empowering 10,000+ Students Worldwide
+              </p>
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-heading font-bold text-gray-900 leading-tight">
+                <span className="block">Welcome to</span>
+                <span className="block text-blue-600">UpSpace</span>
               </h1>
               <p className="text-lg sm:text-xl font-body text-gray-600 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0">
                 Discover digital skills, master new technologies, and accelerate your academic and professional journey with curated resources designed for success.
