@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   title: "UpSpace - Your Space to Learn, Create, and Lead",
   description: "Discover scholarships, master new skills, and accelerate your academic and professional journey with curated resources designed for success.",
   keywords: ["scholarships", "education", "learning", "career development", "digital skills"],
+  icons: {
+    icon: '/favicon.ico',
+  },
   authors: [{ name: "UpSpace Team" }],
   openGraph: {
     title: "UpSpace - Your Space to Learn, Create, and Lead",
