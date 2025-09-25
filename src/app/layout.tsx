@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "@/src/components/Header";
 import Footer from "@/src/components/Footer";
 import LiveChat from "@/src/components/LiveChat";
-import { getCategories } from "@/src/utils/data-fetcher"; // Import the data fetching utility
+import { getCategories } from "@/src/lib/cms"; // <<-- CORRECTED IMPORT PATH
 
 // Define font variables
 const headingFont = Poppins({

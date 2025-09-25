@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
@@ -10,52 +10,65 @@ import { contentSchema } from '../schema';
 const slugify = (text: string) => {
   return text.toString().toLowerCase()
     .trim()
-    .replace(/\s+/g, '-')       // Replace spaces with -
-    .replace(/[^\w-]+/g, '')   // Remove all non-word chars
-    .replace(/--+/g, '-');      // Replace multiple - with single -
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-');
 };
 
-// Recursive function to find all markdown files in subdirectories
-function findMarkdownFilesRecursively(dir: string, fileList: string[] = []): string[] {
-  if (!fs.existsSync(dir)) {
-    console.warn(`Directory not found: ${dir}`);
-    return [];
+// Function to get categories
+export async function getCategories() {
+  const filePath = path.join(process.cwd(), 'cms', 'categories.json');
+  try {
+    const fileContents = await fs.readFile(filePath, 'utf8');
+    const categories = JSON.parse(fileContents);
+    return { categories };
+  } catch (error) {
+    console.error(`Error reading categories data:`, error);
+    return { categories: [] };
   }
-  const files = fs.readdirSync(dir);
-  for (const file of files) {
-    const filePath = path.join(dir, file);
-    const stat = fs.statSync(filePath);
-    if (stat.isDirectory()) {
-      findMarkdownFilesRecursively(filePath, fileList);
-    } else if (file.endsWith('.md')) {
-      fileList.push(filePath);
-    }
+}
+
+// Recursive function to find all markdown files in subdirectories
+async function findMarkdownFilesRecursively(dir: string, fileList: string[] = []): Promise<string[]> {
+  try {
+    const files = await fs.readdir(dir);
+    await Promise.all(files.map(async (file) => {
+      const filePath = path.join(dir, file);
+      const stat = await fs.stat(filePath);
+      if (stat.isDirectory()) {
+        await findMarkdownFilesRecursively(filePath, fileList);
+      } else if (file.endsWith('.md')) {
+        fileList.push(filePath);
+      }
+    }));
+  } catch (error) {
+    console.warn(`Directory not found or could not be read: ${dir}`, error);
   }
   return fileList;
 }
 
 // Main function to get all content for a given directory
-export function getAllContent(dir: string, categorySlug: string) {
-  const allMarkdownFiles = findMarkdownFilesRecursively(dir);
+export async function getAllContent(dir: string, categorySlug: string) {
+  const allMarkdownFiles = await findMarkdownFilesRecursively(dir);
 
-  const allContent = allMarkdownFiles.map(fullPath => {
-    const fileName = path.basename(fullPath);
-    const slug = fileName.replace(/\.md$/, '');
-    const fileContents = fs.readFileSync(fullPath, 'utf8');
-    const { data, content } = matter(fileContents);
+  const allContent = await Promise.all(
+    allMarkdownFiles.map(async (fullPath) => {
+      const fileName = path.basename(fullPath);
+      const slug = fileName.replace(/\.md$/, '');
+      const fileContents = await fs.readFile(fullPath, 'utf8');
+      const { data, content } = matter(fileContents);
 
-    // Use the data as-is without strict validation for now
-    const validatedData = data;
+      const validatedData = data;
 
-    return {
-      slug,
-      content,
-      category: categorySlug,
-      frontMatter: validatedData,
-    };
-  });
+      return {
+        slug,
+        content,
+        category: categorySlug,
+        frontMatter: validatedData,
+      };
+    })
+  );
 
-  // Sort by date (newest first) if date exists in frontMatter
   return allContent.sort((a, b) => {
     const dateA = new Date(a.frontMatter.date || '');
     const dateB = new Date(b.frontMatter.date || '');
@@ -67,30 +80,27 @@ export function getAllContent(dir: string, categorySlug: string) {
 export async function getContentBySlug(categorySlug: string, slug: string) {
   const baseDir = path.join(process.cwd(), 'content', categorySlug);
 
-  // Check if category directory exists
-  if (!fs.existsSync(baseDir)) {
+  try {
+    await fs.stat(baseDir);
+  } catch (error) {
     throw new Error(`Content directory not found for category: ${categorySlug}`);
   }
 
-  // Find the file recursively in subdirectories
-  const allMarkdownFiles = findMarkdownFilesRecursively(baseDir);
+  const allMarkdownFiles = await findMarkdownFilesRecursively(baseDir);
   const fullPath = allMarkdownFiles.find(filePath => {
     const fileName = path.basename(filePath, '.md');
     return fileName === slug;
   });
 
-  // Check if file exists
-  if (!fullPath || !fs.existsSync(fullPath)) {
+  if (!fullPath) {
     throw new Error(`Content file not found for slug: ${slug} in category: ${categorySlug}`);
   }
 
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const fileContents = await fs.readFile(fullPath, 'utf8');
   const { data, content } = matter(fileContents);
 
-  // Validate front matter
   const validatedData = contentSchema.parse(data);
 
-  // Use remark to convert markdown into HTML string
   const processedContent = await remark()
     .use(html)
     .process(content);
